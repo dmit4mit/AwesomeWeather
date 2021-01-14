@@ -1,0 +1,92 @@
+package com.dmitron.bottlerocketweather.base
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.annotation.CallSuper
+import androidx.annotation.LayoutRes
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
+import com.dmitron.bottlerocketweather.base.BaseViewModel.BaseScreenEvent
+import com.dmitron.bottlerocketweather.model.SnackbarData
+import com.dmitron.bottlerocketweather.utils.Event
+import com.dmitron.bottlerocketweather.utils.executeAfter
+import com.google.android.material.snackbar.Snackbar
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.reflect.KClass
+
+abstract class BaseFragment<B : ViewDataBinding, ModelT : BaseViewModel<*>>(
+    viewModelClass: KClass<ModelT>,
+) : Fragment() {
+    @LayoutRes
+    abstract fun layoutId(): Int
+
+    // This property is only valid between onCreateView and onDestroyView.
+    protected val binding get() = bindingNullable!!
+    private var bindingNullable: B? = null
+
+    protected open val viewModel: ModelT by viewModel(viewModelClass)
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        bindingNullable = DataBindingUtil.inflate(inflater, layoutId(), container, false)
+        binding.executeAfter {
+            binding.setVariable(BR.viewModel, viewModel)
+            binding.lifecycleOwner = this@BaseFragment
+        }
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupViews()
+        subscribeBaseEvents()
+        subscribeToViewModel(viewModel)
+    }
+
+    /**
+     * View setup goes here.
+     */
+    protected fun setupViews() {
+
+    }
+
+    /**
+     * ViewModel observes goes here.
+     */
+    protected fun subscribeToViewModel(viewModel: ModelT) {
+
+    }
+
+    private fun subscribeBaseEvents() {
+        viewModel.baseScreenEvent().observe(viewLifecycleOwner, Event.EventObserver {
+            when (it) {
+                BaseScreenEvent.NavigateBack -> navigateBack()
+                is BaseScreenEvent.ShowSnackbar -> showSnackbar(it.snackbarData)
+            }
+        })
+    }
+
+    private fun navigateBack() {
+        //TODO("Not yet implemented")
+    }
+
+    protected fun showSnackbar(data: SnackbarData) {
+        val message = when(data) {
+            is SnackbarData.StringRes -> getString(data.stringRes)
+            is SnackbarData.Text -> data.text
+        }
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
+    }
+
+    @CallSuper
+    override fun onDestroyView() {
+        super.onDestroyView()
+        bindingNullable = null
+    }
+}
