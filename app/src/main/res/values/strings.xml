@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">BottleRocketWeather</string>
+
+    <string name="title_time">Time</string>
+    <string name="title_temperature">Temp</string>
+    <string name="title_rain_chance">Chance\nof Rain</string>
+    <string name="title_wind_speed">Wind\n(mph)</string>
+    <string name="title_humidity">Humidity</string>
 </resources>

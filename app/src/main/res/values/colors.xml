@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white_alpha_85">#D9FFFFFF</color>
+    <color name="hoki">#657f9d</color>
+    <color name="tundora">#4a4a4a</color>
+    <color name="polo_blue">#94BFE8</color>
+    <color name="silver">#c9c7c7</color>
+    <color name="alto">#d8d8d8</color>
+
+    <color name="element_active">@color/white</color>
+    <color name="element_inactive">@color/hoki</color>
 </resources>

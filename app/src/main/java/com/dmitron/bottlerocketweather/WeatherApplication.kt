@@ -1,6 +1,7 @@
 package com.dmitron.bottlerocketweather
 
 import android.app.Application
+import com.dmitron.bottlerocketweather.di.viewModelModule
 import com.dmitron.data.local.mappers.facade.localMappersModule
 import com.dmitron.data.remote.api.networkModule
 import com.dmitron.data.remote.mappers.networkMappersModule
@@ -15,11 +16,7 @@ class WeatherApplication : Application() {
         startKoin {
             androidContext(this@WeatherApplication)
             modules(
-                repositoryModule,
-                networkModule,
-                networkMappersModule,
-                localMappersModule,
-                domainModule,
+                viewModelModule
             )
         }
     }

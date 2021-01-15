@@ -9,6 +9,9 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
+import com.dmitron.bottlerocketweather.BR
 import com.dmitron.bottlerocketweather.base.BaseViewModel.BaseScreenEvent
 import com.dmitron.bottlerocketweather.model.SnackbarData
 import com.dmitron.bottlerocketweather.utils.Event
@@ -66,14 +69,16 @@ abstract class BaseFragment<B : ViewDataBinding, ModelT : BaseViewModel<*>>(
     private fun subscribeBaseEvents() {
         viewModel.baseScreenEvent().observe(viewLifecycleOwner, Event.EventObserver {
             when (it) {
-                BaseScreenEvent.NavigateBack -> navigateBack()
+                BaseScreenEvent.NavigateBack -> navigateUp()
                 is BaseScreenEvent.ShowSnackbar -> showSnackbar(it.snackbarData)
             }
         })
     }
 
-    private fun navigateBack() {
-        //TODO("Not yet implemented")
+    protected fun navigate(navDirections: NavDirections) = findNavController().navigate(navDirections)
+
+    protected fun navigateUp() {
+        findNavController().navigateUp()
     }
 
     protected fun showSnackbar(data: SnackbarData) {

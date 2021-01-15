@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.dmitron.bottlerocketweather.city.views.CompactWeatherViewData" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvDayOfWeek"
+            android:textAppearance="?textAppearanceBody1"
+            android:text="@{data.dayOfTheWeek}"
+            android:textColor="@{data.checked ? @color/element_active : @color/element_inactive}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Mon" />
+
+        <ImageView
+            android:id="@+id/ivWeather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="6dp"
+            android:layout_gravity="center"
+            android:src="@{data.weatherIcon}"
+            tools:src="@drawable/ic_sunny_active"
+            android:tint="@{data.checked ? @color/element_active : @color/element_inactive}" />
+
+        <TextView
+            android:id="@+id/tvTemperature"
+            android:textAppearance="?textAppearanceCaption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data.temperature}"
+            android:textColor="@{data.checked ? @color/element_active : @color/element_inactive}"
+            android:layout_gravity="center"
+            tools:text="72" />
+
+    </LinearLayout>
+</layout>
