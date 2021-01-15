@@ -1,6 +1,7 @@
 package com.dmitron.domain.models
 
 data class City(
+    val id: Long,
     val name: String,
     val countryCode: String,
     val imageURLs: ImageURLs,

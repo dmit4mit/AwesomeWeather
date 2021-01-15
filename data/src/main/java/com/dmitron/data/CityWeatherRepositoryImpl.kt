@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 class CityWeatherRepositoryImpl(
-    private val localSource: CityWeatherLocalDataSource,
+//    private val localSource: CityWeatherLocalDataSource,
     private val remoteSource: CityWeatherRemoteDataSource,
 ) : CityWeatherRepository {
     private val dispatcher = Dispatchers.IO
@@ -22,12 +22,13 @@ class CityWeatherRepositoryImpl(
         emit(remoteSource.getAllCities())
     }.flowOn(dispatcher)
 
-    override suspend fun getCityWeathersById(ids: List<String>): Flow<ResultWrapper<List<CityWeather>>> = flow {
+    override suspend fun getCityWeathersById(ids: List<Long>): Flow<ResultWrapper<List<CityWeather>>> = flow {
         emit(ResultWrapper.Loading)
     }.flowOn(dispatcher)
 
-    override suspend fun getCityWeatherById(cityId: String): Flow<ResultWrapper<CityWeather>> = flow {
+    override suspend fun getCityWeatherById(cityId: Long): Flow<ResultWrapper<CityWeather>> = flow {
         emit(ResultWrapper.Loading)
+        emit(remoteSource.getCityWeather(cityId))
     }.flowOn(dispatcher)
 
     override suspend fun searchCities(query: String): Flow<ResultWrapper<List<City>>> = flow {

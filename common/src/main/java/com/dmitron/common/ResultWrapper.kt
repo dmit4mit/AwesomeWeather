@@ -1,11 +1,26 @@
 package com.dmitron.common
 
 import androidx.annotation.StringRes
+import kotlin.Exception
 
 sealed class ResultWrapper<out R> {
     data class Success<out R>(val data: R) : ResultWrapper<R>()
-    data class Failure(val errorType: ErrorType) : ResultWrapper<Nothing>()
+    data class Failure(val errorType: ErrorType, val exception: Exception? = null) : ResultWrapper<Nothing>()
     object Loading : ResultWrapper<Nothing>()
+
+    inline fun <T> map(fn: (R) -> (T)): ResultWrapper<T> =
+        when (this) {
+            is Success -> Success(fn(data))
+            is Failure -> this
+            Loading -> Loading
+        }
+
+    inline fun <T> flatMap(fn: (R) -> ResultWrapper<T>): ResultWrapper<T> =
+        when (this) {
+            is Success -> fn(data)
+            is Failure -> this
+            Loading -> Loading
+        }
 }
 
 enum class ErrorType {
@@ -13,9 +28,9 @@ enum class ErrorType {
 
     @StringRes
     fun getMessage(): Int = when(this) {
-        NO_DATA_FOUND -> TODO()
-        NETWORK_ERROR -> TODO()
-        API_ERROR -> TODO()
-        UNKNOWN_ERROR -> TODO()
+        NO_DATA_FOUND -> R.string.error_message_no_data
+        NETWORK_ERROR -> R.string.error_message_network
+        API_ERROR -> R.string.error_message_api
+        UNKNOWN_ERROR -> R.string.error_message_unknown
     }
 }

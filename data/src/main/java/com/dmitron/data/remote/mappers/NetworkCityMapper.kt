@@ -10,6 +10,7 @@ internal fun mapNetworkCityList(source: NetworkCityList): List<City> =
 
 internal fun mapNetworkCity(source: NetworkCity): City =
     City(
+        id = source.geoNameId.orDefault(0),
         name = source.name.orEmpty(),
         countryCode = source.name.orEmpty(),
         imageURLs = mapNetworkImageUrls(source.imageURLs ?: NetworkCity.NetworkImageURLs()),

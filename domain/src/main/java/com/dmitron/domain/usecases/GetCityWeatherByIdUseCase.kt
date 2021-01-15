@@ -12,5 +12,5 @@ class GetCityWeatherByIdUseCase(private val repository: CityWeatherRepository) :
         return repository.getCityWeatherById(params.cityId)
     }
 
-    data class Params(val cityId: String)
+    data class Params(val cityId: Long)
 }

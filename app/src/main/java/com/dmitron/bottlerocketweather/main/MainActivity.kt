@@ -12,8 +12,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModel()
 
-    private val navController get() = findNavController(R.id.nav_host_fragment_container)
-    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityMainBinding =

@@ -4,12 +4,13 @@ import com.dmitron.data.remote.model.NetworkCityList
 import com.dmitron.data.remote.model.NetworkCityWeather
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface WeatherApiService {
-    @GET("cities")
+    @GET("cities/{id}")
     suspend fun getCityWeather(
-        @Query("cityID") cityId: Int
+        @Path("id") cityId: Long
     ): Response<NetworkCityWeather>
 
     @GET("cities")

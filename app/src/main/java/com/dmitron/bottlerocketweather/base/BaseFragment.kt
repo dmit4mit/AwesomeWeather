@@ -49,20 +49,20 @@ abstract class BaseFragment<B : ViewDataBinding, ModelT : BaseViewModel<*>>(
         super.onViewCreated(view, savedInstanceState)
         setupViews()
         subscribeBaseEvents()
-        subscribeToViewModel(viewModel)
+        observeViewModel(viewModel)
     }
 
     /**
      * View setup goes here.
      */
-    protected fun setupViews() {
+    protected open fun setupViews() {
 
     }
 
     /**
      * ViewModel observes goes here.
      */
-    protected fun subscribeToViewModel(viewModel: ModelT) {
+    protected open fun observeViewModel(viewModel: ModelT) {
 
     }
 

@@ -3,35 +3,35 @@ package com.dmitron.data.remote.model
 import com.squareup.moshi.Json
 
 data class NetworkWeather(
-    @Json(name = "id")
+    @field:Json(name = "id")
     val id: Int? = null,
-    @Json(name = "days")
+    @field:Json(name = "days")
     val days: List<NetworkDay>? = null
 ) {
     data class NetworkDay(
-        @Json(name = "dayOfTheWeek")
+        @field:Json(name = "dayOfTheWeek")
         val dayOfTheWeek: Int? = null,
-        @Json(name = "low")
+        @field:Json(name = "low")
         val low: Int? = null,
-        @Json(name = "high")
+        @field:Json(name = "high")
         val high: Int? = null,
-        @Json(name = "weatherType")
+        @field:Json(name = "weatherType")
         val weatherType: String? = null,
-        @Json(name = "hourlyWeather")
+        @field:Json(name = "hourlyWeather")
         val hourlyWeather: List<NetworkHourlyWeather>? = null
     ) {
         data class NetworkHourlyWeather(
-            @Json(name = "windSpeed")
+            @field:Json(name = "windSpeed")
             val windSpeed: Double? = null,
-            @Json(name = "temperature")
+            @field:Json(name = "temperature")
             val temperature: Int? = null,
-            @Json(name = "weatherType")
+            @field:Json(name = "weatherType")
             val weatherType: String? = null,
-            @Json(name = "humidity")
+            @field:Json(name = "humidity")
             val humidity: Double? = null,
-            @Json(name = "hour")
+            @field:Json(name = "hour")
             val hour: Int? = null,
-            @Json(name = "rainChance")
+            @field:Json(name = "rainChance")
             val rainChance: Double? = null
         )
     }

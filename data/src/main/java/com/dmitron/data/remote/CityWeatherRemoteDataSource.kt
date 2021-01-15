@@ -5,7 +5,7 @@ import com.dmitron.domain.models.City
 import com.dmitron.domain.models.CityWeather
 
 interface CityWeatherRemoteDataSource {
-    suspend fun getCityWeather(cityId: String): ResultWrapper<CityWeather>
+    suspend fun getCityWeather(cityId: Long): ResultWrapper<CityWeather>
     suspend fun getAllCities(): ResultWrapper<List<City>>
     suspend fun searchCities(query: String): ResultWrapper<List<City>>
 }

@@ -1,10 +1,13 @@
 package com.dmitron.bottlerocketweather.base
 
+import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dmitron.bottlerocketweather.model.SnackbarData
 import com.dmitron.bottlerocketweather.utils.Event
+import com.dmitron.common.ErrorType
+import com.dmitron.common.ResultWrapper
 
 abstract class BaseViewModel<T> : ViewModel() {
     private val baseScreenEvent = MutableLiveData<Event<BaseScreenEvent>>()
@@ -19,6 +22,10 @@ abstract class BaseViewModel<T> : ViewModel() {
 
     protected fun setEvent(event: T) {
         _eventProvider.value = Event(event)
+    }
+
+    protected fun showSnackbar(@StringRes stringRes: Int) {
+        baseScreenEvent.value = Event((BaseScreenEvent.ShowSnackbar(SnackbarData.StringRes(stringRes))))
     }
 
     sealed class BaseScreenEvent {
