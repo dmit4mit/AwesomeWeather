@@ -32,8 +32,11 @@ class CityViewModel(
     val city = cityWeather.map { it.city }
     val weather = cityWeather.map { it.weather }
 
+    val name = city.map {"${it.name}, ${it.countryCode}" }
+
     val date = city.map { DateTimeUtils.formatCurrentDate(it.timezone) }
     val time = city.map { DateTimeUtils.formatCurrentTime(it.timezone) }
+    val currentWeather = weather.map {  }
 
     init {
         cityId.value = 4047914
