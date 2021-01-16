@@ -7,7 +7,7 @@
 
         <variable
             name="data"
-            type="com.dmitron.bottlerocketweather.city.views.HourlyWeatherViewData" />
+            type="com.dmitron.bottlerocketweather.city.hourlyadapter.HourlyWeatherViewData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,18 +22,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.1" />
+            app:layout_constraintGuide_percent="0.05" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.9" />
+            app:layout_constraintGuide_percent="0.95" />
 
         <ImageView
             android:id="@+id/ivWeather"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:src="@{data.icon}"
             app:layout_constraintEnd_toStartOf="@+id/tvTime"
@@ -44,11 +44,12 @@
 
         <TextView
             android:id="@+id/tvTime"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{data.time}"
             android:textAllCaps="true"
             android:lineHeight="33dp"
+            android:gravity="center"
             android:textAppearance="?textAppearanceBody1"
             app:layout_constraintEnd_toStartOf="@+id/tvTemperature"
             app:layout_constraintStart_toEndOf="@+id/ivWeather"
@@ -57,10 +58,11 @@
 
         <TextView
             android:id="@+id/tvTemperature"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{data.temperature}"
             android:textAppearance="?textAppearanceBody1"
+            android:gravity="center"
             app:layout_constraintEnd_toStartOf="@+id/tvRainChance"
             app:layout_constraintStart_toEndOf="@+id/tvTime"
             app:layout_constraintTop_toTopOf="parent"
@@ -68,9 +70,10 @@
 
         <TextView
             android:id="@+id/tvRainChance"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{data.rainChance}"
+            android:gravity="center"
             android:textAppearance="?textAppearanceBody1"
             app:layout_constraintEnd_toStartOf="@+id/tvWind"
             app:layout_constraintStart_toEndOf="@+id/tvTemperature"
@@ -79,9 +82,10 @@
 
         <TextView
             android:id="@+id/tvWind"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{data.windSpeed}"
+            android:gravity="center"
             android:textAppearance="?textAppearanceBody1"
             app:layout_constraintEnd_toStartOf="@+id/tvHumidity"
             app:layout_constraintStart_toEndOf="@+id/tvRainChance"
@@ -90,9 +94,10 @@
 
         <TextView
             android:id="@+id/tvHumidity"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{data.humidity}"
+            android:gravity="center"
             android:textAppearance="?textAppearanceBody1"
             app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
             app:layout_constraintStart_toEndOf="@+id/tvWind"

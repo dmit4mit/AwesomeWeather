@@ -4,10 +4,8 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dmitron.bottlerocketweather.model.SnackbarData
+import com.dmitron.bottlerocketweather.utils.SnackbarData
 import com.dmitron.bottlerocketweather.utils.Event
-import com.dmitron.common.ErrorType
-import com.dmitron.common.ResultWrapper
 
 abstract class BaseViewModel<T> : ViewModel() {
     private val baseScreenEvent = MutableLiveData<Event<BaseScreenEvent>>()

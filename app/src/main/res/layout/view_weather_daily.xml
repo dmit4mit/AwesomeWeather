@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="data"
-            type="com.dmitron.bottlerocketweather.city.views.CompactWeatherViewData" />
+            type="com.dmitron.bottlerocketweather.city.daysAdapter.DailyWeatherViewData" />
+
     </data>
 
     <LinearLayout
@@ -19,7 +19,7 @@
         <TextView
             android:id="@+id/tvDayOfWeek"
             android:textAppearance="?textAppearanceBody1"
-            android:text="@{data.dayOfTheWeek}"
+            android:text="@{data.dayOfTheWeekDisplay}"
             android:textColor="@{data.checked ? @color/element_active : @color/element_inactive}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

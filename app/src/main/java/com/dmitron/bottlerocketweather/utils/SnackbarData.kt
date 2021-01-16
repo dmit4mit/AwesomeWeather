@@ -1,4 +1,4 @@
-package com.dmitron.bottlerocketweather.model
+package com.dmitron.bottlerocketweather.utils
 
 
 sealed class SnackbarData {

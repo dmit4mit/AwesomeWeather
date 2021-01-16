@@ -17,22 +17,59 @@
 
         <ImageView
             android:id="@+id/ivCity"
+            imageUrl="@{viewModel.cityImage}"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
-            app:layout_constraintHeight_percent="0.4"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription"
             tools:src="@tools:sample/backgrounds/scenic" />
 
+        <View
+            android:id="@+id/viewShadow"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/black_alpha_15"
+            android:padding="@dimen/margin_default"
+            android:visibility="@{!viewModel.isLoading()}"
+            app:layout_constraintBottom_toBottomOf="@id/tvMainTemperature"
+            app:layout_constraintEnd_toEndOf="@id/spaceShadowEnd"
+            app:layout_constraintStart_toStartOf="@id/spaceShadowStart"
+            app:layout_constraintTop_toTopOf="@id/spaceShadowTop" />
+
+        <Space
+            android:id="@+id/spaceShadowStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_small"
+            app:layout_constraintEnd_toStartOf="@id/tvDate"
+            app:layout_constraintTop_toTopOf="@id/tvDate" />
+
+        <Space
+            android:id="@+id/spaceShadowEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
+            app:layout_constraintStart_toEndOf="@id/tvTime"
+            app:layout_constraintTop_toTopOf="@id/tvTime" />
+
+        <Space
+            android:id="@+id/spaceShadowTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_small"
+            app:layout_constraintBottom_toTopOf="@+id/tvCityName"
+            app:layout_constraintEnd_toStartOf="@+id/tvCityName" />
+
         <TextView
             android:id="@+id/tvCityName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?textAppearanceHeadline6"
             android:text="@{viewModel.name}"
+            android:textAppearance="?textAppearanceHeadline6"
             app:layout_constraintBottom_toTopOf="@+id/tvDate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -45,24 +82,24 @@
             android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?textAppearanceBody1"
             android:layout_marginTop="12dp"
             android:text="@{viewModel.date}"
+            android:textAppearance="?textAppearanceBody1"
             app:layout_constraintBottom_toTopOf="@+id/tvMainTemperature"
             app:layout_constraintEnd_toStartOf="@+id/tvTime"
             app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvCityName"
-            app:layout_constraintHorizontal_chainStyle="packed"
             tools:text="Mon 4/21/18" />
 
         <TextView
             android:id="@+id/tvTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?textAppearanceBody1"
             android:layout_marginStart="@dimen/margin_default"
             android:text="@{viewModel.time}"
+            android:textAppearance="?textAppearanceBody1"
             app:layout_constraintBottom_toBottomOf="@+id/tvDate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -75,6 +112,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_small"
+            android:text="@{viewModel.currentWeather}"
             android:textAppearance="?textAppearanceHeadline4"
             app:layout_constraintBottom_toBottomOf="@id/ivCity"
             app:layout_constraintEnd_toEndOf="parent"
@@ -84,11 +122,12 @@
             tools:text="75" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvWeeklyWeather"
+            android:id="@+id/rvDailyWeather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_default"
             android:layout_marginEnd="@dimen/margin_default"
+            android:layout_marginTop="@dimen/margin_small"
             android:nestedScrollingEnabled="false"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -96,7 +135,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivCity"
             tools:itemCount="7"
-            tools:listitem="@layout/view_compact_weather" />
+            tools:listitem="@layout/view_weather_daily" />
 
         <View
             android:id="@+id/divider"
@@ -104,9 +143,10 @@
             android:layout_height="1dp"
             android:layout_marginTop="@dimen/margin_default"
             android:background="@color/alto"
+            android:visibility="@{!viewModel.isLoading()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvWeeklyWeather" />
+            app:layout_constraintTop_toBottomOf="@id/rvDailyWeather" />
 
         <include
             android:id="@+id/includeHourlyWeatherTitle"
@@ -114,6 +154,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_default"
+            android:visibility="@{!viewModel.isLoading()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider" />
@@ -123,12 +164,24 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:clipToPadding="false"
+            android:paddingTop="@dimen/margin_small"
             android:paddingBottom="@dimen/margin_default"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/includeHourlyWeatherTitle"
             tools:listitem="@layout/view_weather_hourly" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.isLoading()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

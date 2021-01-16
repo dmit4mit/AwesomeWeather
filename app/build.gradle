@@ -65,6 +65,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation("io.coil-kt:coil:1.1.1")
 
     // Koin
     implementation "org.koin:koin-android:2.1.5"

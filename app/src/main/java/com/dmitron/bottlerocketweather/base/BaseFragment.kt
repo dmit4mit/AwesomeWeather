@@ -13,7 +13,7 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.dmitron.bottlerocketweather.BR
 import com.dmitron.bottlerocketweather.base.BaseViewModel.BaseScreenEvent
-import com.dmitron.bottlerocketweather.model.SnackbarData
+import com.dmitron.bottlerocketweather.utils.SnackbarData
 import com.dmitron.bottlerocketweather.utils.Event
 import com.dmitron.bottlerocketweather.utils.executeAfter
 import com.google.android.material.snackbar.Snackbar
