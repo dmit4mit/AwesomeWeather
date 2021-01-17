@@ -17,10 +17,12 @@ class CityWeatherApiDataSource(
     }
 
     override suspend fun getAllCities(): ResultWrapper<List<City>> {
-        TODO("Not yet implemented")
+        return request { weatherApiService.getCityList() }
+            .map(mapper.networkCityListMapper)
     }
 
     override suspend fun searchCities(query: String): ResultWrapper<List<City>> {
-        TODO("Not yet implemented")
+        return request { weatherApiService.getCityList(query) }
+            .map(mapper.networkCityListMapper)
     }
 }

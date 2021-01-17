@@ -8,6 +8,15 @@
         <variable
             name="viewModel"
             type="com.dmitron.bottlerocketweather.main.MainViewModel" />
+
+        <variable
+            name="topBarClickListener"
+            type="com.dmitron.bottlerocketweather.main.TopBarClickListener" />
+
+        <variable
+            name="topBarVisibility"
+            type="Boolean" />
+
     </data>
 
     <FrameLayout
@@ -32,6 +41,8 @@
 
         <include
             android:id="@+id/includeTopBar"
+            app:clickHandler = "@{topBarClickListener}"
+            android:visibility="@{topBarVisibility}"
             layout="@layout/top_bar" />
 
     </FrameLayout>

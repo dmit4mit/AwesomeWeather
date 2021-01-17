@@ -19,4 +19,12 @@ interface WeatherApiService {
         @Query("pageCount") pageCount: Int,
         @Query("pageNumber") pageNumber: Int,
     ): Response<NetworkCityList>
+
+    @GET("cities")
+    suspend fun getCityList(
+        @Query("search") search: String,
+    ): Response<NetworkCityList>
+
+    @GET("cities")
+    suspend fun getCityList(): Response<NetworkCityList>
 }

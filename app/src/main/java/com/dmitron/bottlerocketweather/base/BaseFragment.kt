@@ -13,6 +13,7 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.dmitron.bottlerocketweather.BR
 import com.dmitron.bottlerocketweather.base.BaseViewModel.BaseScreenEvent
+import com.dmitron.bottlerocketweather.main.MainUiController
 import com.dmitron.bottlerocketweather.utils.SnackbarData
 import com.dmitron.bottlerocketweather.utils.Event
 import com.dmitron.bottlerocketweather.utils.executeAfter
@@ -29,8 +30,15 @@ abstract class BaseFragment<B : ViewDataBinding, ModelT : BaseViewModel<*>>(
     // This property is only valid between onCreateView and onDestroyView.
     protected val binding get() = bindingNullable!!
     private var bindingNullable: B? = null
+    protected val mainUiController
+        get() = requireActivity() as MainUiController
 
     protected open val viewModel: ModelT by viewModel(viewModelClass)
+
+    /**
+     * Override this value in child fragments to control top bar visibility.
+     */
+    protected open val isTopBarVisible = true
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,6 +55,7 @@ abstract class BaseFragment<B : ViewDataBinding, ModelT : BaseViewModel<*>>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mainUiController.setTopBarVisibility(isTopBarVisible)
         setupViews()
         subscribeBaseEvents()
         observeViewModel(viewModel)

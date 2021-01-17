@@ -36,7 +36,7 @@ object DateTimeUtils {
 
     fun getCurrentHourIn24Format(timezone: String): Int =
         try {
-                ZonedDateTime.now(ZoneId.of(timezone)).hour
+            ZonedDateTime.now(ZoneId.of(timezone)).hour
         } catch (e: Exception) {
             Timber.e(e, "Failed formatting time for timezone: $timezone")
             0

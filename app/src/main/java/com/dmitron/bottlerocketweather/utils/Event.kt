@@ -1,5 +1,7 @@
 package com.dmitron.bottlerocketweather.utils
 
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer as LifecycleObserver
 
 open class Event<out T>(private val content: T) {
@@ -38,4 +40,11 @@ open class Event<out T>(private val content: T) {
             }
         }
     }
+}
+
+fun <R> LiveData<Event<R>>.observeEvent(
+    lifecycleOwner: LifecycleOwner,
+    eventObserver: (R) -> Unit
+) {
+    observe(lifecycleOwner, Event.EventObserver(eventObserver))
 }
