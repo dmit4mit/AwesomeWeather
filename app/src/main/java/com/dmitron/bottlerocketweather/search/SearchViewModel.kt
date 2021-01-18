@@ -25,7 +25,8 @@ class SearchViewModel(
         liveData {
             searchCitiesUseCase(SearchCitiesUseCase.Params(query)).collect { result ->
                 handleResult(result) { cities ->
-                    if (cities.isEmpty()) handleFailure(ErrorType.NO_DATA_FOUND)
+                    _displayError.value = 0
+                    if (cities.isEmpty() && query != "") handleFailure(ErrorType.NO_DATA_FOUND)
                     emit(cities.map { it.toSearchItem() })
                 }
             }
