@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity(), MainUiController {
     private val viewModel: MainViewModel by viewModel()
     private lateinit var binding: ActivityMainBinding
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -25,24 +24,11 @@ class MainActivity : AppCompatActivity(), MainUiController {
         }
     }
 
-    override fun setTopBarVisibility(isVisible: Boolean) {
-        binding.topBarVisibility = isVisible
-        binding.executePendingBindings()
-    }
-
     override fun hideKeyboard() {
         inputMethodManager().hideSoftInputFromWindow(currentFocus?.windowToken, 0)
     }
 
     override fun showKeyboard() {
         inputMethodManager().toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
-    }
-
-    override fun setTopBarClickListener(clickListener: TopBarClickListener) {
-        binding.topBarClickListener = clickListener
-    }
-
-    override fun removeTopBarClickListener() {
-        binding.topBarClickListener = null
     }
 }

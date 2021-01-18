@@ -35,7 +35,7 @@
             style="@style/Widget.MyApp.ImageButton"
             android:layout_margin="@dimen/margin_default"
             android:src="@drawable/ic_trash"
-            android:onClick="@{(view) -> clickHandler.onDeleteClicked()}"
+            android:onClick="@{(view) -> clickHandler.onTrashClicked()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/ivRadar"
             app:layout_constraintTop_toTopOf="parent"

@@ -3,16 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/cityFragment">
+    app:startDestination="@id/cityViewPagerFragmentDestination">
 
     <fragment
         android:id="@+id/cityFragment"
         android:name="com.dmitron.bottlerocketweather.city.CityFragment"
         android:label="CityFragment"
         tools:layout="@layout/fragment_city">
-        <action
-            android:id="@+id/action_cityFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+
     </fragment>
 
     <fragment
@@ -20,4 +18,15 @@
         android:name="com.dmitron.bottlerocketweather.search.SearchFragment"
         android:label="SearchFragment"
         tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/cityViewPagerFragmentDestination"
+        android:name="com.dmitron.bottlerocketweather.city.CityViewPagerFragment"
+        tools:layout="@layout/fragment_city_view_pager"
+        android:label="CityViewPagerFragment" >
+
+        <action
+            android:id="@+id/action_cityViewPagerFragmentDestination_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
 </navigation>

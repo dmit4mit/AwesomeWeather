@@ -1,6 +1,7 @@
 package com.dmitron.bottlerocketweather.city
 
 import android.os.Bundle
+import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import com.dmitron.bottlerocketweather.R
@@ -19,24 +20,15 @@ class CityFragment : BaseFragment<FragmentCityBinding, CityViewModel>(CityViewMo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setFragmentResultListener(SearchFragment.FRAGMENT_RESULT_SEARCH_KEY) { _, bundle ->
-            val cityId = bundle.getLong(SearchFragment.BUNDLE_KEY_SEARCH_CITY_ID)
-            viewModel.loadCity(cityId)
-        }
+        viewModel.loadCity(requireArguments().getLong(KEY_CITY_ID))
     }
 
     override fun setupViews() {
-        mainUiController.setTopBarClickListener(viewModel.topBarClickHandler)
         binding.rvHourlyWeather.adapter = hourlyAdapter
         binding.rvDailyWeather.adapter = dailyAdapter
     }
 
     override fun observeViewModel(viewModel: CityViewModel) {
-        viewModel.eventProvider.observeEvent(viewLifecycleOwner) {
-            when(it) {
-                CityViewModel.CityScreenEvent.OpenSearchScreen -> openSearchFragment()
-            }
-        }
         viewModel.hourlyWeather.observe(viewLifecycleOwner) {
             hourlyAdapter.submitList(it)
         }
@@ -45,12 +37,14 @@ class CityFragment : BaseFragment<FragmentCityBinding, CityViewModel>(CityViewMo
         }
     }
 
-    private fun openSearchFragment() {
-        navigate(CityFragmentDirections.actionCityFragmentToSearchFragment())
+    companion object {
+        private const val KEY_CITY_ID = "KEY_CITY_ID"
+
+        fun newInstance(cityId: Long) = CityFragment().apply {
+            arguments = bundleOf(
+                KEY_CITY_ID to cityId
+            )
+        }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        mainUiController.removeTopBarClickListener()
-    }
 }

@@ -1,6 +1,7 @@
 package com.dmitron.data
 
 import com.dmitron.common.ResultWrapper
+import com.dmitron.data.local.CitySharedPrefDataSource
 import com.dmitron.data.local.CityWeatherLocalDataSource
 import com.dmitron.data.remote.CityWeatherRemoteDataSource
 import com.dmitron.domain.models.City
@@ -10,10 +11,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import org.koin.core.get
 
 class CityWeatherRepositoryImpl(
 //    private val localSource: CityWeatherLocalDataSource,
     private val remoteSource: CityWeatherRemoteDataSource,
+    private val cityIdsLocalSource: CitySharedPrefDataSource
 ) : CityWeatherRepository {
     private val dispatcher = Dispatchers.IO
 
@@ -35,4 +38,12 @@ class CityWeatherRepositoryImpl(
         emit(ResultWrapper.Loading)
         emit(remoteSource.searchCities(query))
     }.flowOn(dispatcher)
+
+    override fun saveCitiesIds(ids: List<Long>) {
+        cityIdsLocalSource.saveCityIds(ids)
+    }
+
+    override fun getSavedCitiesIds(): List<Long> {
+        return cityIdsLocalSource.getCityIds()
+    }
 }

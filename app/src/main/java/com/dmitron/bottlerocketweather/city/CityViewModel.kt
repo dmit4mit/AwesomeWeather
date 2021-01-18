@@ -63,25 +63,6 @@ class CityViewModel(
             ?.sortedBy { it.dayOfTheWeekNumber }.orEmpty()
     }
 
-    val topBarClickHandler = object : TopBarClickListener {
-        override fun onSearchClicked() {
-            setEvent(CityScreenEvent.OpenSearchScreen)
-        }
-
-        override fun onDeleteClicked() {
-//            TODO("Not yet implemented")
-        }
-
-        override fun onRadarClicked() {
-//            TODO("Not yet implemented")
-        }
-
-    }
-
-    init {
-        loadCity(4047914)
-    }
-
     fun onDaySelected(dayNumber: Int) {
         selectedDayOfWeek.value = dayNumber
     }
@@ -101,6 +82,6 @@ class CityViewModel(
         }
 
     sealed class CityScreenEvent {
-        object OpenSearchScreen : CityScreenEvent()
+
     }
 }

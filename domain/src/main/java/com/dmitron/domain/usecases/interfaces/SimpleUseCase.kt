@@ -1,4 +1,4 @@
-package com.dmitron.domain.usecases
+package com.dmitron.domain.usecases.interfaces
 
 /**
  * Common interface for use cases. Each use case must be synchronous.

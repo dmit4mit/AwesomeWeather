@@ -1,6 +1,7 @@
 package com.dmitron.bottlerocketweather.di
 
 import com.dmitron.bottlerocketweather.city.CityViewModel
+import com.dmitron.bottlerocketweather.city.CityViewPagerViewModel
 import com.dmitron.bottlerocketweather.main.MainViewModel
 import com.dmitron.bottlerocketweather.search.SearchViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -10,4 +11,5 @@ val viewModelModule = module {
     viewModel { MainViewModel() }
     viewModel { CityViewModel(get()) }
     viewModel { SearchViewModel(get()) }
+    viewModel { CityViewPagerViewModel(get(), get()) }
 }

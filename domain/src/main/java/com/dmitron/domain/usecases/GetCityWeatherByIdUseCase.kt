@@ -3,6 +3,7 @@ package com.dmitron.domain.usecases
 import com.dmitron.common.ResultWrapper
 import com.dmitron.domain.models.CityWeather
 import com.dmitron.domain.repository.CityWeatherRepository
+import com.dmitron.domain.usecases.interfaces.ParamsUseCase
 import kotlinx.coroutines.flow.Flow
 
 class GetCityWeatherByIdUseCase(private val repository: CityWeatherRepository) :

@@ -1,4 +1,4 @@
-package com.dmitron.domain.usecases
+package com.dmitron.domain.usecases.interfaces
 
 import com.dmitron.common.ResultWrapper
 import kotlinx.coroutines.flow.Flow

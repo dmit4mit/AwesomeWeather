@@ -10,4 +10,6 @@ interface CityWeatherRepository {
     suspend fun getCityWeathersById(ids: List<Long>): Flow<ResultWrapper<List<CityWeather>>>
     suspend fun getCityWeatherById(cityId: Long): Flow<ResultWrapper<CityWeather>>
     suspend fun searchCities(query: String): Flow<ResultWrapper<List<City>>>
+    fun saveCitiesIds(ids: List<Long>)
+    fun getSavedCitiesIds(): List<Long>
 }

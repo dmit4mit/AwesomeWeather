@@ -16,7 +16,6 @@ import com.dmitron.bottlerocketweather.utils.onChange
 class SearchFragment :
     BaseFragment<FragmentSearchBinding, SearchViewModel>(SearchViewModel::class) {
     override fun layoutId() = R.layout.fragment_search
-    override val isTopBarVisible = false
 
     private val adapter by lazy { SearchAdapter(viewModel::onSearchItemClicked) }
 

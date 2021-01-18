@@ -7,6 +7,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.dmitron.bottlerocketweather.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -31,6 +32,22 @@ fun RecyclerView.addDividerDecoration(
 
 fun EditText.onChange(onChangeCallback: (String) -> Unit) {
     doOnTextChanged { text, _, _, _ -> onChangeCallback(text.toString()) }
+}
+
+fun ViewPager2.onPageSelected(onSelectedCallback: (position: Int) -> Unit) {
+    registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        override fun onPageSelected(position: Int) {
+            onSelectedCallback(position)
+        }
+
+        override fun onPageScrolled(
+            position: Int,
+            positionOffset: Float,
+            positionOffsetPixels: Int
+        ) {
+            super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+        }
+    })
 }
 
 fun <T> debounce(

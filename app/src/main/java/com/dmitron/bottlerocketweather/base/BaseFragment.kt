@@ -35,11 +35,6 @@ abstract class BaseFragment<B : ViewDataBinding, ModelT : BaseViewModel<*>>(
 
     protected open val viewModel: ModelT by viewModel(viewModelClass)
 
-    /**
-     * Override this value in child fragments to control top bar visibility.
-     */
-    protected open val isTopBarVisible = true
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -55,7 +50,6 @@ abstract class BaseFragment<B : ViewDataBinding, ModelT : BaseViewModel<*>>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainUiController.setTopBarVisibility(isTopBarVisible)
         setupViews()
         subscribeBaseEvents()
         observeViewModel(viewModel)
