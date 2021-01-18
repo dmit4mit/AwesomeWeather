@@ -36,14 +36,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:src="@{data.icon}"
-            app:layout_constraintEnd_toStartOf="@+id/tvTime"
+            app:layout_constraintEnd_toStartOf="@+id/clock"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_sunny_active" />
 
         <TextView
-            android:id="@+id/tvTime"
+            android:id="@+id/clock"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{data.time}"
@@ -64,7 +64,7 @@
             android:textAppearance="?textAppearanceBody1"
             android:gravity="center"
             app:layout_constraintEnd_toStartOf="@+id/tvRainChance"
-            app:layout_constraintStart_toEndOf="@+id/tvTime"
+            app:layout_constraintStart_toEndOf="@+id/clock"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="72" />
 

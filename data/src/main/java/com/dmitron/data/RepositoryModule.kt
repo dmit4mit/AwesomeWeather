@@ -14,7 +14,7 @@ import org.koin.dsl.module
 
 val repositoryModule = module {
     single { CityWeatherRoomDataSource(get()) } bind CityWeatherLocalDataSource::class
-    single { CityWeatherApiDataSource(get(), get()) } bind CityWeatherRemoteDataSource::class
+    single { CityWeatherApiDataSource(get(), get(), get()) } bind CityWeatherRemoteDataSource::class
     single { CityWeatherRepositoryImpl(get(), get()) } bind CityWeatherRepository::class
     single { CitySharedPrefDataSource() }
     factory { (prefName: String) -> provideSharedPrefs(androidContext(), prefName) }

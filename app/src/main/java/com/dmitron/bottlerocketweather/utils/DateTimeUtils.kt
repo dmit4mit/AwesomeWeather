@@ -7,15 +7,11 @@ import java.time.format.TextStyle
 import java.util.*
 
 object DateTimeUtils {
-    fun formatCurrentDate(timezone: String): String =
-        try {
-            val formatter =
-                DateTimeFormatter.ofPattern("EEE M/d/yy").withZone(ZoneId.of(timezone))
-            LocalDate.now().format(formatter)
-        } catch (e: Exception) {
-            Timber.e(e, "Failed formatting date")
-            ""
-        }
+    fun formatCurrentDate(timezone: String): String {
+        val formatter =
+            DateTimeFormatter.ofPattern("EEE M/d/yy").withZone(getZoneIdFromString(timezone))
+        return LocalDate.now().format(formatter)
+    }
 
     fun formatCurrentTime(timezone: String): String =
         try {
@@ -30,9 +26,14 @@ object DateTimeUtils {
         }
 
     /**
-     * Day in range [0 - 6].
+     * Day in range [0 - 6], Mon - Sun.
      */
-    fun getTodayDayOfWeek(): Int = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1
+    fun getTodayDayOfWeek(timezone: String): Int {
+        val day = Calendar.getInstance(TimeZone.getTimeZone(getZoneIdFromString(timezone)))
+            .get(Calendar.DAY_OF_WEEK) - 2
+        return if (day == -1) day + 7 else day
+    }
+
 
     fun getCurrentHourIn24Format(timezone: String): Int =
         try {
@@ -55,4 +56,11 @@ object DateTimeUtils {
     fun formatDayOfWeekToString(dayOfWeek: Int): String {
         return DayOfWeek.of(dayOfWeek + 1).getDisplayName(TextStyle.SHORT, Locale.getDefault())
     }
+
+    private fun getZoneIdFromString(timezone: String): ZoneId =
+        try {
+            ZoneId.of(timezone)
+        } catch (e: Exception) {
+            ZoneId.systemDefault()
+        }
 }

@@ -12,7 +12,7 @@ internal fun mapNetworkCity(source: NetworkCity): City =
     City(
         id = source.geoNameId.orDefault(0),
         name = source.name.orEmpty(),
-        countryCode = source.name.orEmpty(),
+        countryCode = source.countryCode.orEmpty(),
         imageURLs = mapNetworkImageUrls(source.imageURLs ?: NetworkCity.NetworkImageURLs()),
         latitude = source.latitude.orDefault(),
         longitude = source.longitude.orDefault(),

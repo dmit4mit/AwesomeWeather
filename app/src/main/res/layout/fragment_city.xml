@@ -34,7 +34,6 @@
             android:layout_height="0dp"
             android:background="@color/black_alpha_15"
             android:padding="@dimen/margin_default"
-            android:visibility="@{!viewModel.isLoading()}"
             app:layout_constraintBottom_toBottomOf="@id/tvMainTemperature"
             app:layout_constraintEnd_toEndOf="@id/spaceShadowEnd"
             app:layout_constraintStart_toStartOf="@id/spaceShadowStart"
@@ -52,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="end"
-            app:constraint_referenced_ids="tvCityName, tvTime, tvMainTemperature" />
+            app:constraint_referenced_ids="tvCityName, clock, tvMainTemperature" />
 
         <Space
             android:id="@+id/spaceShadowStart"
@@ -68,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_small"
             app:layout_constraintStart_toEndOf="@id/barrierInfoEnd"
-            app:layout_constraintTop_toTopOf="@id/tvTime" />
+            app:layout_constraintTop_toTopOf="@id/clock" />
 
         <Space
             android:id="@+id/spaceShadowTop"
@@ -104,26 +103,26 @@
             android:text="@{viewModel.date}"
             android:textAppearance="?textAppearanceBody1"
             app:layout_constraintBottom_toTopOf="@+id/tvMainTemperature"
-            app:layout_constraintEnd_toStartOf="@+id/tvTime"
+            app:layout_constraintEnd_toStartOf="@+id/clock"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvCityName"
             tools:text="Mon 4/21/18" />
 
-        <TextView
-            android:id="@+id/tvTime"
+        <TextClock
+            android:id="@+id/clock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_default"
-            android:text="@{viewModel.time}"
+            android:timeZone="@{viewModel.city.timezone}"
             android:textAppearance="?textAppearanceBody1"
+            android:format24Hour="K:mm a"
+            android:layout_marginStart="@dimen/margin_default"
             app:layout_constraintBottom_toBottomOf="@+id/tvDate"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tvDate"
             app:layout_constraintTop_toTopOf="@+id/tvDate"
-            tools:text="11:58 PM" />
+            tools:text="09:32 PM" />
 
         <TextView
             android:id="@+id/tvMainTemperature"
@@ -161,7 +160,6 @@
             android:layout_height="1dp"
             android:layout_marginTop="@dimen/margin_default"
             android:background="@color/alto"
-            android:visibility="@{!viewModel.isLoading()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rvDailyWeather" />
@@ -172,7 +170,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_default"
-            android:visibility="@{!viewModel.isLoading()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider" />
@@ -200,6 +197,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/staticItemsGroup"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:constraint_referenced_ids="includeHourlyWeatherTitle, divider, viewShadow, clock"
+            android:visibility="@{viewModel.cityWeather != null}"
+            tools:visibility="visible"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

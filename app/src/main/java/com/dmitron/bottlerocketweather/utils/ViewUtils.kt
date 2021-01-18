@@ -1,9 +1,10 @@
 package com.dmitron.bottlerocketweather.utils
 
+import android.view.View
+import android.view.ViewTreeObserver
 import android.widget.EditText
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
-import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
@@ -38,14 +39,6 @@ fun ViewPager2.onPageSelected(onSelectedCallback: (position: Int) -> Unit) {
     registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
             onSelectedCallback(position)
-        }
-
-        override fun onPageScrolled(
-            position: Int,
-            positionOffset: Float,
-            positionOffsetPixels: Int
-        ) {
-            super.onPageScrolled(position, positionOffset, positionOffsetPixels)
         }
     })
 }

@@ -36,9 +36,9 @@
             android:layout_marginStart="@dimen/margin_default_double"
             android:layout_marginEnd="@dimen/margin_default_double"
             android:hint="@string/hint_search"
-            app:hintTextColor="?colorSecondaryVariant"
-            app:boxStrokeColor="?colorSecondaryVariant"
             app:boxBackgroundColor="@color/white_alpha_85"
+            app:boxStrokeColor="?colorSecondaryVariant"
+            app:hintTextColor="?colorSecondaryVariant"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,6 +54,21 @@
                 tools:text="Dallas, TX" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tvError"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/margin_default_double"
+            android:text='@{viewModel.displayError}'
+            android:textAppearance="?textAppearanceHeadline5"
+            android:textColor="?colorSecondaryVariant"
+            android:visibility="@{viewModel.displayError != 0}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchInputLayout"
+            tools:text="No data found" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSearch"
@@ -72,11 +87,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="@{viewModel.isLoading()}"
-            app:layout_constraintVertical_bias="0.4"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchInputLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/searchInputLayout"
+            app:layout_constraintVertical_bias="0.4" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

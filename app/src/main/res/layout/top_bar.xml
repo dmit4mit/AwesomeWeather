@@ -7,6 +7,10 @@
         <variable
             name="clickHandler"
             type="com.dmitron.bottlerocketweather.main.TopBarClickListener" />
+
+        <variable
+            name="trashIconVisibility"
+            type="Boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,6 +39,7 @@
             style="@style/Widget.MyApp.ImageButton"
             android:layout_margin="@dimen/margin_default"
             android:src="@drawable/ic_trash"
+            android:visibility="@{trashIconVisibility}"
             android:onClick="@{(view) -> clickHandler.onTrashClicked()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/ivRadar"

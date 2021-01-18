@@ -1,11 +1,11 @@
 package com.dmitron.bottlerocketweather.city
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.databinding.ObservableArrayList
+import androidx.lifecycle.*
 import com.dmitron.bottlerocketweather.R
 import com.dmitron.bottlerocketweather.base.BaseViewModel
 import com.dmitron.bottlerocketweather.main.TopBarClickListener
+import com.dmitron.bottlerocketweather.utils.registerSimpleOnListChangedListener
 import com.dmitron.domain.usecases.GetCityIdsUseCase
 import com.dmitron.domain.usecases.SaveCityIdsUseCase
 
@@ -13,10 +13,13 @@ class CityViewPagerViewModel(
     private val getCityIdsUseCase: GetCityIdsUseCase,
     private val saveCityIdsUseCase: SaveCityIdsUseCase,
 ) : BaseViewModel<CityViewPagerScreenEvent>(), LifecycleObserver {
-    private val _cityIds = mutableListOf<Long>()
+    private val _cityIds = ObservableArrayList<Long>()
     val cityIds: List<Long> = _cityIds
 
     var selectedCityId: Long? = null
+
+    private val _trashIconVisibility = MutableLiveData(cityIds.size > 1)
+    val trashIconVisibility: LiveData<Boolean> = _trashIconVisibility
 
     val topBarClickHandler = object : TopBarClickListener {
         override fun onSearchClicked() {
@@ -29,17 +32,15 @@ class CityViewPagerViewModel(
                     _cityIds.remove(removeId)
                     setEvent(CityViewPagerScreenEvent.RemoveCity(removeId))
                 }
-            } 
+            }
         }
 
-        override fun onRadarClicked() {
-//            TODO("Not yet implemented")
-        }
-
+        override fun onRadarClicked() = showSnackbar(R.string.msg_radar_broken)
     }
 
     init {
         val ids = getCityIdsUseCase().ifEmpty { listOf(DEFAULT_CITY_ID) }
+        _cityIds.registerSimpleOnListChangedListener { _trashIconVisibility.value = it.size > 1 }
         _cityIds.addAll(ids)
     }
 

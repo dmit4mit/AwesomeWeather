@@ -2,7 +2,9 @@ package com.dmitron.bottlerocketweather.utils
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.databinding.BindingAdapter
 import coil.load
 
@@ -17,6 +19,12 @@ object BindingAdapters {
     @BindingAdapter("imageUrl")
     fun setImageUrl(imageView: ImageView, url: String?) {
         imageView.load(url)
+    }
+
+    @JvmStatic
+    @BindingAdapter("android:text")
+    fun setTextResource(textView: TextView, @StringRes stringRes: Int) {
+        if (stringRes != 0) textView.setText(stringRes)
     }
 
     @JvmStatic

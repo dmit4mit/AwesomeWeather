@@ -30,12 +30,12 @@ abstract class BaseViewModel<T> : ViewModel() {
     protected inline fun <R> handleResult(result: ResultWrapper<R>, successFn: (R) -> Unit) {
         when (result) {
             is ResultWrapper.Success -> successFn(result.data).also { setLoading(false) }
-            is ResultWrapper.Failure -> displayFailure(result.errorType).also { setLoading(false) }
+            is ResultWrapper.Failure -> handleFailure(result.errorType).also { setLoading(false) }
             ResultWrapper.Loading -> setLoading(true)
         }
     }
 
-    protected fun displayFailure(failure: ErrorType) {
+    protected open fun handleFailure(failure: ErrorType) {
         showSnackbar(failure.getMessage())
     }
 

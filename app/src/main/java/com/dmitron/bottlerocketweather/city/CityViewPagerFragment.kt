@@ -2,6 +2,7 @@ package com.dmitron.bottlerocketweather.city
 
 import android.os.Bundle
 import androidx.fragment.app.setFragmentResultListener
+import androidx.viewpager2.widget.ViewPager2
 import com.dmitron.bottlerocketweather.R
 import com.dmitron.bottlerocketweather.base.BaseFragment
 import com.dmitron.bottlerocketweather.databinding.FragmentCityViewPagerBinding
@@ -29,23 +30,24 @@ class CityViewPagerFragment :
     }
 
     override fun observeViewModel(viewModel: CityViewPagerViewModel) {
-        viewModel.eventProvider.observeEvent(viewLifecycleOwner) {
-            when(it) {
-                is CityViewPagerScreenEvent.AddCitiesScreens -> addCitiesToViewPager(it.ids)
+        viewModel.eventProvider.observeEvent(viewLifecycleOwner) { event ->
+            when (event) {
+                is CityViewPagerScreenEvent.AddCitiesScreens -> {
+                    addCitiesToViewPager(event.ids)
+                    binding.viewPager.scrollToTheLastItem()
+                }
                 CityViewPagerScreenEvent.OpenSearchScreen -> openSearchFragment()
-                is CityViewPagerScreenEvent.RemoveCity -> removeCityFromViewPager(it.id)
+                is CityViewPagerScreenEvent.RemoveCity -> adapter.removeByCityId(event.id)
             }
         }
     }
 
-    private fun removeCityFromViewPager(id: Long) {
-        adapter.removeByCityId(id)
-    }
+    private fun openSearchFragment() = navigate(
+        CityViewPagerFragmentDirections.actionCityViewPagerFragmentDestinationToSearchFragment()
+    )
 
-    private fun openSearchFragment() {
-        navigate(
-            CityViewPagerFragmentDirections.actionCityViewPagerFragmentDestinationToSearchFragment()
-        )
+    private fun ViewPager2.scrollToTheLastItem() {
+        post { setCurrentItem(this@CityViewPagerFragment.adapter.itemCount - 1, true) }
     }
 
     private fun addCitiesToViewPager(ids: List<Long>) {

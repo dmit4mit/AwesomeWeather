@@ -16,6 +16,7 @@ import com.dmitron.domain.models.City
 import com.dmitron.domain.models.Weather
 import com.dmitron.domain.usecases.GetCityWeatherByIdUseCase
 import kotlinx.coroutines.flow.collect
+import java.util.*
 
 class CityViewModel(
     private val getCityWeatherByIdUseCase: GetCityWeatherByIdUseCase
@@ -25,10 +26,15 @@ class CityViewModel(
     val cityWeather = cityId.switchMap { id ->
         liveData {
             getCityWeatherByIdUseCase(GetCityWeatherByIdUseCase.Params(id)).collect { result ->
-                handleResult(result) { emit(it) }
+                handleResult(result) {
+                    timezone = it.city.timezone
+                    emit(it)
+                }
             }
         }
     }
+
+    private var timezone: String = TimeZone.getDefault().toString()
 
     val city = cityWeather.map { it.city }
     val weather = cityWeather.map { it.weather }
@@ -37,11 +43,11 @@ class CityViewModel(
     val date = city.map { DateTimeUtils.formatCurrentDate(it.timezone) }
     val time = city.map { DateTimeUtils.formatCurrentTime(it.timezone) }
 
-    private val selectedDayOfWeek = MutableLiveData(DateTimeUtils.getTodayDayOfWeek())
+    private val selectedDayOfWeek = MutableLiveData(DateTimeUtils.getTodayDayOfWeek(timezone))
 
     // todo: update every hour if needed
     val currentWeather = cityWeather.map { cityWeather ->
-        val todayWeather = cityWeather.weather.retrieveWeatherDay(DateTimeUtils.getTodayDayOfWeek())
+        val todayWeather = cityWeather.weather.retrieveWeatherDay(DateTimeUtils.getTodayDayOfWeek(timezone))
         val temp = todayWeather?.hourlyWeather?.find {
             it.hour == DateTimeUtils.getCurrentHourIn24Format(cityWeather.city.timezone)
         }?.temperature ?: 0
