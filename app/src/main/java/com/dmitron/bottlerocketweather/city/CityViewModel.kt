@@ -41,7 +41,6 @@ class CityViewModel(
 
     val name = city.map { "${it.name}, ${it.countryCode}" }
     val date = city.map { DateTimeUtils.formatCurrentDate(it.timezone) }
-    val time = city.map { DateTimeUtils.formatCurrentTime(it.timezone) }
 
     private val selectedDayOfWeek = MutableLiveData(DateTimeUtils.getTodayDayOfWeek(timezone))
 
@@ -67,6 +66,10 @@ class CityViewModel(
         weather?.days
             ?.map { it.toViewData(it.dayOfTheWeek == day) }
             ?.sortedBy { it.dayOfTheWeekNumber }.orEmpty()
+    }
+
+    fun onRefresh() {
+        cityId.value = cityId.value
     }
 
     fun onDaySelected(dayNumber: Int) {

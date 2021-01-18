@@ -10,202 +10,200 @@
             type="com.dmitron.bottlerocketweather.city.CityViewModel" />
     </data>
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/transparent">
+        app:onRefreshListener="@{() -> viewModel.onRefresh()}"
+        app:refreshing="@{viewModel.isLoading()}">
 
-        <ImageView
-            android:id="@+id/ivCity"
-            imageUrl="@{viewModel.cityImage}"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription"
-            tools:src="@tools:sample/backgrounds/scenic" />
-
-        <View
-            android:id="@+id/viewShadow"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@color/black_alpha_15"
-            android:padding="@dimen/margin_default"
-            app:layout_constraintBottom_toBottomOf="@id/tvMainTemperature"
-            app:layout_constraintEnd_toEndOf="@id/spaceShadowEnd"
-            app:layout_constraintStart_toStartOf="@id/spaceShadowStart"
-            app:layout_constraintTop_toTopOf="@id/spaceShadowTop" />
-
-        <androidx.constraintlayout.widget.Barrier
-            android:id="@+id/barrierInfoStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:barrierDirection="start"
-            app:constraint_referenced_ids="tvCityName, tvDate, tvMainTemperature" />
-
-        <androidx.constraintlayout.widget.Barrier
-            android:id="@+id/barrierInfoEnd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:barrierDirection="end"
-            app:constraint_referenced_ids="tvCityName, clock, tvMainTemperature" />
-
-        <Space
-            android:id="@+id/spaceShadowStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_small"
-            app:layout_constraintEnd_toStartOf="@id/barrierInfoStart"
-            app:layout_constraintTop_toTopOf="@id/tvDate" />
-
-        <Space
-            android:id="@+id/spaceShadowEnd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_small"
-            app:layout_constraintStart_toEndOf="@id/barrierInfoEnd"
-            app:layout_constraintTop_toTopOf="@id/clock" />
-
-        <Space
-            android:id="@+id/spaceShadowTop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_small"
-            app:layout_constraintBottom_toTopOf="@+id/tvCityName"
-            app:layout_constraintEnd_toStartOf="@+id/tvCityName" />
-
-        <TextView
-            android:id="@+id/tvCityName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.name}"
-            android:textAppearance="?textAppearanceHeadline6"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginEnd="@dimen/margin_default"
-            app:layout_constraintBottom_toTopOf="@+id/tvDate"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            tools:text="Dallas, TX" />
-
-        <TextView
-            android:id="@+id/tvDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@{viewModel.date}"
-            android:textAppearance="?textAppearanceBody1"
-            app:layout_constraintBottom_toTopOf="@+id/tvMainTemperature"
-            app:layout_constraintEnd_toStartOf="@+id/clock"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCityName"
-            tools:text="Mon 4/21/18" />
-
-        <TextClock
-            android:id="@+id/clock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:timeZone="@{viewModel.city.timezone}"
-            android:textAppearance="?textAppearanceBody1"
-            android:format24Hour="K:mm a"
-            android:layout_marginStart="@dimen/margin_default"
-            app:layout_constraintBottom_toBottomOf="@+id/tvDate"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tvDate"
-            app:layout_constraintTop_toTopOf="@+id/tvDate"
-            tools:text="09:32 PM" />
-
-        <TextView
-            android:id="@+id/tvMainTemperature"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
-            android:text="@{viewModel.currentWeather}"
-            android:textAppearance="?textAppearanceHeadline4"
-            app:layout_constraintBottom_toBottomOf="@id/ivCity"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvDate"
-            tools:text="75" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvDailyWeather"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginTop="@dimen/margin_small"
-            android:layout_marginEnd="@dimen/margin_default"
-            android:orientation="horizontal"
-            android:overScrollMode="never"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivCity"
-            tools:itemCount="7"
-            tools:listitem="@layout/view_weather_daily" />
-
-        <View
-            android:id="@+id/divider"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="@dimen/margin_default"
-            android:background="@color/alto"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvDailyWeather" />
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent">
 
-        <include
-            android:id="@+id/includeHourlyWeatherTitle"
-            layout="@layout/view_weather_hourly_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_default"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider" />
+            <ImageView
+                android:id="@+id/ivCity"
+                imageUrl="@{viewModel.cityImage}"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription"
+                tools:src="@tools:sample/backgrounds/scenic" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvHourlyWeather"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:clipToPadding="false"
-            android:paddingTop="@dimen/margin_small"
-            android:paddingBottom="@dimen/margin_default"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/includeHourlyWeatherTitle"
-            tools:listitem="@layout/view_weather_hourly" />
+            <View
+                android:id="@+id/viewShadow"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/black_alpha_15"
+                android:padding="@dimen/margin_default"
+                app:layout_constraintBottom_toBottomOf="@id/tvMainTemperature"
+                app:layout_constraintEnd_toEndOf="@id/spaceShadowEnd"
+                app:layout_constraintStart_toStartOf="@id/spaceShadowStart"
+                app:layout_constraintTop_toTopOf="@id/spaceShadowTop" />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="@{viewModel.isLoading()}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrierInfoStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="start"
+                app:constraint_referenced_ids="tvCityName, tvDate, tvMainTemperature" />
 
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/staticItemsGroup"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:constraint_referenced_ids="includeHourlyWeatherTitle, divider, viewShadow, clock"
-            android:visibility="@{viewModel.cityWeather != null}"
-            tools:visibility="visible"/>
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrierInfoEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="end"
+                app:constraint_referenced_ids="tvCityName, clock, tvMainTemperature" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Space
+                android:id="@+id/spaceShadowStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_small"
+                app:layout_constraintEnd_toStartOf="@id/barrierInfoStart"
+                app:layout_constraintTop_toTopOf="@id/tvDate" />
+
+            <Space
+                android:id="@+id/spaceShadowEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                app:layout_constraintStart_toEndOf="@id/barrierInfoEnd"
+                app:layout_constraintTop_toTopOf="@id/clock" />
+
+            <Space
+                android:id="@+id/spaceShadowTop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_small"
+                app:layout_constraintBottom_toTopOf="@+id/tvCityName"
+                app:layout_constraintEnd_toStartOf="@+id/tvCityName" />
+
+            <TextView
+                android:id="@+id/tvCityName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.name}"
+                android:textAppearance="?textAppearanceHeadline6"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginEnd="@dimen/margin_default"
+                app:layout_constraintBottom_toTopOf="@+id/tvDate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Dallas, TX" />
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@{viewModel.date}"
+                android:textAppearance="?textAppearanceBody1"
+                app:layout_constraintBottom_toTopOf="@+id/tvMainTemperature"
+                app:layout_constraintEnd_toStartOf="@+id/clock"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCityName"
+                tools:text="Mon 4/21/18" />
+
+            <TextClock
+                android:id="@+id/clock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:timeZone="@{viewModel.city.timezone}"
+                android:textAppearance="?textAppearanceBody1"
+                android:format24Hour="K:mm a"
+                android:layout_marginStart="@dimen/margin_default"
+                app:layout_constraintBottom_toBottomOf="@+id/tvDate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvDate"
+                app:layout_constraintTop_toTopOf="@+id/tvDate"
+                tools:text="09:32 PM" />
+
+            <TextView
+                android:id="@+id/tvMainTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:text="@{viewModel.currentWeather}"
+                android:textAppearance="?textAppearanceHeadline4"
+                app:layout_constraintBottom_toBottomOf="@id/ivCity"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDate"
+                tools:text="75" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDailyWeather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:orientation="horizontal"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivCity"
+                tools:itemCount="7"
+                tools:listitem="@layout/view_weather_daily" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_default"
+                android:background="@color/alto"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rvDailyWeather" />
+
+            <include
+                android:id="@+id/includeHourlyWeatherTitle"
+                layout="@layout/view_weather_hourly_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvHourlyWeather"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:clipToPadding="false"
+                android:paddingTop="@dimen/margin_small"
+                android:paddingBottom="@dimen/margin_default"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/includeHourlyWeatherTitle"
+                tools:listitem="@layout/view_weather_hourly" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/staticItemsGroup"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:constraint_referenced_ids="includeHourlyWeatherTitle, divider, viewShadow, clock"
+                android:visibility="@{viewModel.cityWeather != null}"
+                tools:visibility="visible"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 </layout>

@@ -13,18 +13,6 @@ object DateTimeUtils {
         return LocalDate.now().format(formatter)
     }
 
-    fun formatCurrentTime(timezone: String): String =
-        try {
-            val formatter =
-                DateTimeFormatter
-                    .ofPattern("KK:mm a")
-                    .withZone(ZoneId.of(timezone))
-            LocalTime.now().format(formatter)
-        } catch (e: Exception) {
-            Timber.e(e, "Failed formatting date")
-            ""
-        }
-
     /**
      * Day in range [0 - 6], Mon - Sun.
      */
