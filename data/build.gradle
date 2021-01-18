@@ -40,15 +40,15 @@ dependencies {
     implementation project(":domain")
 
     // Koin
-    implementation "org.koin:koin-android:2.1.5"
-    implementation "org.koin:koin-androidx-scope:2.1.5"
-    implementation "org.koin:koin-androidx-viewmodel:2.1.5"
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
 
     // retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.8.1'
     implementation "com.squareup.retrofit2:converter-moshi:2.8.1"
 
-    implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation "com.jakewharton.timber:timber:$timber_version"
 
     // room
     def room_version = "2.2.6"
