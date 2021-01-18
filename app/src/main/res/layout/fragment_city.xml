@@ -194,6 +194,23 @@
                 app:layout_constraintTop_toBottomOf="@id/includeHourlyWeatherTitle"
                 tools:listitem="@layout/view_weather_hourly" />
 
+            <ImageButton
+                android:id="@+id/btnRetry"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="@{viewModel.cityWeather == null &amp;&amp; !viewModel.isLoading()}"
+                android:src="@drawable/ic_retry"
+                android:scaleType="centerCrop"
+                android:background="?selectableItemBackgroundBorderless"
+                android:onClick="@{(view) -> viewModel.onRefresh()}"
+                app:layout_constraintHeight_percent="0.1"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/staticItemsGroup"
                 android:layout_width="0dp"
