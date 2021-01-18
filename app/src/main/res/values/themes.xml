@@ -7,7 +7,10 @@
         <item name="android:textColor">?colorPrimary</item>
         <item name="colorSecondary">@color/hoki</item>
         <item name="colorSecondaryVariant">@color/tundora</item>
+        <item name="colorOnSurface">@color/white</item>
         <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
+        <item name="colorControlHighlight">@color/tundora_alpha_26</item>
+        <item name="textInputStyle">@style/Widget.AppTheme.TextInputLayout</item>
 
         <item name="textAppearanceHeadline4">@style/TextAppearance.MyApp.Headline4</item>
         <item name="textAppearanceHeadline5">@style/TextAppearance.MyApp.Headline5</item>
@@ -51,6 +54,15 @@
     <style name="TextAppearance.MyApp.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
         <item name="fontFamily">@font/open_sans_bold</item>
         <item name="android:textSize">11sp</item>
+    </style>
+
+    <style name="ThemeOverlay.AppTheme.TextInputEditText.FilledBox.Dense"
+        parent="ThemeOverlay.MaterialComponents.TextInputEditText.FilledBox.Dense">
+        <item name="colorControlActivated">@color/tundora</item>
+    </style>
+
+    <style name="Widget.AppTheme.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.AppTheme.TextInputEditText.FilledBox.Dense</item>
     </style>
 
 </resources>

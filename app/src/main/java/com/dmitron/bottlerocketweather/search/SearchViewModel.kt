@@ -13,7 +13,7 @@ class SearchViewModel(
     private val searchCitiesUseCase: SearchCitiesUseCase
 ) : BaseViewModel<SearchScreenEvent>() {
 
-    private val query = MutableLiveData("")
+    private val query = MutableLiveData<String>()
 
     val foundCities = query.switchMap { query ->
         liveData {

@@ -1,6 +1,7 @@
 package com.dmitron.bottlerocketweather.search
 
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.lifecycleScope
 import com.dmitron.bottlerocketweather.R

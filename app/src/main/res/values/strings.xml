@@ -6,4 +6,5 @@
     <string name="title_rain_chance">Chance\nof Rain</string>
     <string name="title_wind_speed">Wind\n(mph)</string>
     <string name="title_humidity">Humidity</string>
+    <string name="hint_search">Type something...</string>
 </resources>
