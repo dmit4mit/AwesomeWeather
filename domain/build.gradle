@@ -37,6 +37,9 @@ dependencies {
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2"
 
+    // pagination
+    implementation "androidx.paging:paging-runtime-ktx:$pagination_version"
+
     // Koin
     implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-androidx-scope:$koin_version"

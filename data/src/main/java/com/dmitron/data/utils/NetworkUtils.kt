@@ -21,7 +21,7 @@ inline fun <T> request(
         if (response.isSuccessful && body != null) {
             ResultWrapper.Success(body)
         } else {
-            Timber.e(HttpException(response))
+            Timber.e(response.toString())
             ResultWrapper.Failure(ErrorType.API_ERROR, HttpException(response))
         }
     } catch (throwable: Throwable) {

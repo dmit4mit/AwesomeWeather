@@ -27,4 +27,13 @@ class CityWeatherApiDataSource(
         return request(context) { weatherApiService.getCityList(query) }
             .map(mapper.networkCityListMapper)
     }
+
+    override suspend fun searchCities(
+        query: String,
+        pageCount: Int,
+        pageNumber: Int
+    ): ResultWrapper<List<City>> {
+        return request(context) { weatherApiService.getCityList(query, pageCount, pageNumber) }
+            .map(mapper.networkCityListMapper)
+    }
 }

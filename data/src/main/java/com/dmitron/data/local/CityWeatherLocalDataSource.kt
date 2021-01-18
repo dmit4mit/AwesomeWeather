@@ -1,12 +1,9 @@
 package com.dmitron.data.local
 
-import com.dmitron.domain.models.City
 import com.dmitron.domain.models.CityWeather
+import kotlinx.coroutines.flow.Flow
 
 interface CityWeatherLocalDataSource {
-    suspend fun getCityWeather(cityId: String): CityWeather
-    suspend fun getAllCities(): List<City>
-
-    suspend fun addCities(cities: List<City>)
+//    suspend fun getCityWeather(cityId: Long): Flow<CityWeather>
     suspend fun addCityWeather(cityWeather: CityWeather)
 }

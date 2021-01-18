@@ -8,6 +8,8 @@ sealed class ResultWrapper<out R> {
     data class Failure(val errorType: ErrorType, val exception: Exception? = null) : ResultWrapper<Nothing>()
     object Loading : ResultWrapper<Nothing>()
 
+    fun successOrNull() = if (this is Success) data else null
+
     inline fun <T> map(fn: (R) -> (T)): ResultWrapper<T> =
         when (this) {
             is Success -> Success(fn(data))
