@@ -34,7 +34,8 @@
             android:layout_gravity="center"
             android:src="@{data.weatherIcon}"
             tools:src="@drawable/ic_sunny_active"
-            android:tint="@{data.checked ? @color/element_active : @color/element_inactive}" />
+            android:tint="@{data.checked ? @color/element_active : @color/element_inactive}"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/tvTemperature"

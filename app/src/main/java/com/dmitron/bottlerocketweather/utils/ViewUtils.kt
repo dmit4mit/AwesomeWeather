@@ -1,7 +1,5 @@
 package com.dmitron.bottlerocketweather.utils
 
-import android.view.View
-import android.view.ViewTreeObserver
 import android.widget.EditText
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat

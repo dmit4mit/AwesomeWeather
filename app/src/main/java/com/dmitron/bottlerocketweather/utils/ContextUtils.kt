@@ -1,7 +1,6 @@
 package com.dmitron.bottlerocketweather.utils
 
 import android.content.Context
-import android.net.ConnectivityManager
 import android.view.LayoutInflater
 import android.view.inputmethod.InputMethodManager
 

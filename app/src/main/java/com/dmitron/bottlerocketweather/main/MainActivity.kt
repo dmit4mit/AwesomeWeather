@@ -1,7 +1,6 @@
 package com.dmitron.bottlerocketweather.main
 
 import android.os.Bundle
-import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil

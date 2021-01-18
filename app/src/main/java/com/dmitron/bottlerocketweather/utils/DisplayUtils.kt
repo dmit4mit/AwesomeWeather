@@ -1,9 +1,6 @@
 package com.dmitron.bottlerocketweather.utils
 
 import android.content.Context
-import android.view.View
-import android.view.Window
-import android.view.WindowManager
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 

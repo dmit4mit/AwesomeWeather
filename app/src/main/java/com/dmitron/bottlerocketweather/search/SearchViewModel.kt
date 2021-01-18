@@ -1,16 +1,14 @@
 package com.dmitron.bottlerocketweather.search
 
-import androidx.lifecycle.*
-import androidx.paging.LivePagedListBuilder
-import androidx.paging.PagedList
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
+import androidx.lifecycle.switchMap
 import com.dmitron.bottlerocketweather.base.BaseViewModel
 import com.dmitron.bottlerocketweather.search.adapter.SearchItem
 import com.dmitron.bottlerocketweather.search.adapter.toSearchItem
 import com.dmitron.common.ErrorType
-import com.dmitron.data.remote.CityDataSourceFactory
-import com.dmitron.domain.models.City
 import com.dmitron.domain.usecases.SearchCitiesUseCase
-import com.dmitron.domain.usecases.SearchPagedCitiesUseCase
 import kotlinx.coroutines.flow.collect
 
 class SearchViewModel(

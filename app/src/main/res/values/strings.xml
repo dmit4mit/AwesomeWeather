@@ -1,14 +1,11 @@
 <resources>
     <string name="app_name">BottleRocketWeather</string>
 
-    <string name="empty_string"> </string>
     <string name="title_time">Time</string>
     <string name="title_temperature">Temp</string>
     <string name="title_rain_chance">Chance\nof Rain</string>
     <string name="title_wind_speed">Wind\n(mph)</string>
     <string name="title_humidity">Humidity</string>
-    <string name="hint_search">Type something…</string>
 
     <string name="msg_radar_broken">Sorry, seems like radars API returns broken GIFs…</string>
-    <string name="msg_cannot_remove_last">Cannot remove the last city</string>
 </resources>

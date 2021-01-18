@@ -7,7 +7,6 @@ import androidx.lifecycle.switchMap
 import com.dmitron.bottlerocketweather.base.BaseViewModel
 import com.dmitron.bottlerocketweather.city.daysAdapter.toViewData
 import com.dmitron.bottlerocketweather.city.hourlyadapter.toViewData
-import com.dmitron.bottlerocketweather.main.TopBarClickListener
 import com.dmitron.bottlerocketweather.utils.CombinedLiveData
 import com.dmitron.bottlerocketweather.utils.DateTimeUtils
 import com.dmitron.bottlerocketweather.utils.DisplayUtils

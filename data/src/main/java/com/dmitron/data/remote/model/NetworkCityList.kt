@@ -1,7 +1,6 @@
 package com.dmitron.data.remote.model
 
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
 data class NetworkCityList(
     @field:Json(name = "totalCitiesFound")

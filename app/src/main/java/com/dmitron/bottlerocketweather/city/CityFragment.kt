@@ -2,15 +2,11 @@ package com.dmitron.bottlerocketweather.city
 
 import android.os.Bundle
 import androidx.core.os.bundleOf
-import androidx.fragment.app.setFragmentResultListener
-import androidx.navigation.fragment.findNavController
 import com.dmitron.bottlerocketweather.R
 import com.dmitron.bottlerocketweather.base.BaseFragment
 import com.dmitron.bottlerocketweather.city.daysAdapter.DailyWeatherAdapter
 import com.dmitron.bottlerocketweather.city.hourlyadapter.HourlyWeatherAdapter
 import com.dmitron.bottlerocketweather.databinding.FragmentCityBinding
-import com.dmitron.bottlerocketweather.search.SearchFragment
-import com.dmitron.bottlerocketweather.utils.observeEvent
 
 class CityFragment : BaseFragment<FragmentCityBinding, CityViewModel>(CityViewModel::class) {
     override fun layoutId() = R.layout.fragment_city
