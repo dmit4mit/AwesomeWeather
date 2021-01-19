@@ -32,12 +32,6 @@ object DisplayUtils : KoinComponent {
 fun Window.enableFullscreen() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
         setDecorFitsSystemWindows(false)
-
-//        insetsController?.run {
-//            hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
-//            systemBarsBehavior =
-//                WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-//        }
     } else {
         decorView.systemUiVisibility = (
                 View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY

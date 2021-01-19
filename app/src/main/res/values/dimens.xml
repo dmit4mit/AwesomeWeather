@@ -4,5 +4,7 @@
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_default">16dp</dimen>
     <dimen name="margin_default_double">32dp</dimen>
+    <dimen name="margin_large">48dp</dimen>
     <dimen name="tab_indicator_padding">6dp</dimen>
+    <dimen name="refresh_progress_offset_end">72dp</dimen>
 </resources>

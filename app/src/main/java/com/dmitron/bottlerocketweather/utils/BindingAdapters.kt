@@ -3,10 +3,13 @@ package com.dmitron.bottlerocketweather.utils
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.databinding.BindingAdapter
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import coil.load
+import com.dmitron.bottlerocketweather.R
 
 object BindingAdapters {
     @JvmStatic

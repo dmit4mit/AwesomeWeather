@@ -22,6 +22,8 @@ class CityFragment : BaseFragment<FragmentCityBinding, CityViewModel>(CityViewMo
     override fun setupViews() {
         binding.rvHourlyWeather.adapter = hourlyAdapter
         binding.rvDailyWeather.adapter = dailyAdapter
+        binding.refreshLayout.setProgressViewOffset(false, 0,
+        resources.getDimensionPixelSize(R.dimen.refresh_progress_offset_end))
     }
 
     override fun observeViewModel(viewModel: CityViewModel) {

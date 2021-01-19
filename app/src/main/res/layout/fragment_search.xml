@@ -10,9 +10,11 @@
             type="com.dmitron.bottlerocketweather.search.SearchViewModel" />
     </data>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         android:background="@color/white_alpha_85">
 
         <ImageButton
@@ -20,7 +22,7 @@
             style="@style/Widget.MyApp.ImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_default_double"
+            android:layout_marginTop="@dimen/margin_large"
             android:layout_marginEnd="@dimen/margin_default"
             android:background="?selectableItemBackgroundBorderless"
             android:onClick="@{(view) -> viewModel.onCloseClicked()}"
@@ -35,15 +37,15 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_default_double"
             android:layout_marginEnd="@dimen/margin_default_double"
-            android:textAppearance="?textAppearanceHeadline5"
             android:backgroundTint="?colorSecondaryVariant"
+            android:textAppearance="?textAppearanceHeadline5"
             android:textColor="?colorSecondaryVariant"
             android:textCursorDrawable="@drawable/cursor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.22"
+            app:layout_constraintVertical_bias="0.2"
             tools:text="Dallas, TX" />
 
         <TextView
@@ -86,4 +88,5 @@
             app:layout_constraintVertical_bias="0.4" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

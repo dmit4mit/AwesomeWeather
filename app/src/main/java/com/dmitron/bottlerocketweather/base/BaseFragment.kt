@@ -10,8 +10,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.dmitron.bottlerocketweather.BR
+import com.dmitron.bottlerocketweather.R
 import com.dmitron.bottlerocketweather.base.BaseViewModel.BaseScreenEvent
 import com.dmitron.bottlerocketweather.main.MainUiController
 import com.dmitron.bottlerocketweather.utils.SnackbarData
