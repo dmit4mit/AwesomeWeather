@@ -22,12 +22,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <include
-            android:id="@+id/includeTopBar"
-            layout="@layout/top_bar"
-            app:trashIconVisibility="@{viewModel.trashIconVisibility}"
-            app:clickHandler="@{viewModel.topBarClickHandler}" />
-
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
@@ -42,6 +36,18 @@
             app:tabIndicatorHeight="0dp"
             app:tabPaddingEnd="@dimen/tab_indicator_padding"
             app:tabPaddingStart="@dimen/tab_indicator_padding" />
+
+        <include
+            android:id="@+id/includeTopBar"
+            layout="@layout/top_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/margin_default_double"
+            app:trashIconVisibility="@{viewModel.trashIconVisibility}"
+            app:clickHandler="@{viewModel.topBarClickHandler}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

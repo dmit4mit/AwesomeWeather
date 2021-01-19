@@ -38,7 +38,6 @@
         android:id="@+id/clock"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:lineHeight="33dp"
         android:gravity="center"
         android:textAppearance="?textAppearanceSubtitle2"
         android:text="@string/title_time"

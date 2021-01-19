@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import com.dmitron.bottlerocketweather.R
 import com.dmitron.bottlerocketweather.databinding.ActivityMainBinding
 import com.dmitron.bottlerocketweather.utils.executeAfter
+import com.dmitron.bottlerocketweather.utils.enableFullscreen
 import com.dmitron.bottlerocketweather.utils.inputMethodManager
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity(), MainUiController {
             viewModel = this@MainActivity.viewModel
             lifecycleOwner = this@MainActivity
         }
+        window.enableFullscreen()
     }
 
     override fun hideKeyboard() {

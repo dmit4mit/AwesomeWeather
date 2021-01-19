@@ -48,7 +48,6 @@
             android:layout_height="wrap_content"
             android:text="@{data.time}"
             android:textAllCaps="true"
-            android:lineHeight="33dp"
             android:gravity="center"
             android:textAppearance="?textAppearanceBody1"
             app:layout_constraintEnd_toStartOf="@+id/tvTemperature"
