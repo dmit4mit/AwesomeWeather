@@ -6,6 +6,7 @@ import com.dmitron.data.utils.mapNullInputList
 import com.dmitron.data.utils.orDefault
 import com.dmitron.domain.models.Weather
 import com.dmitron.domain.models.Weather.Day.HourlyWeather
+import com.dmitron.domain.models.Weather.WeatherType.Companion
 
 internal fun mapNetworkWeather(source: NetworkWeather): Weather =
     Weather(
@@ -18,7 +19,7 @@ internal fun mapNetworkDay(source: NetworkWeather.NetworkDay): Weather.Day =
         dayOfTheWeek = source.dayOfTheWeek.orDefault(),
         low = source.low.orDefault(),
         high = source.high.orDefault(),
-        weatherType = mapWeatherType(source.weatherType.orEmpty()),
+        weatherType = Weather.WeatherType.fromName(source.weatherType.orEmpty()),
         hourlyWeather = mapNullInputList(source.hourlyWeather, ::mapHourlyWeather)
     )
 
@@ -28,12 +29,6 @@ internal fun mapHourlyWeather(source: NetworkHourlyWeather): HourlyWeather =
         humidity = source.humidity.orDefault(),
         rainChance = source.rainChance.orDefault(),
         temperature = source.temperature.orDefault(),
-        weatherType = mapWeatherType(source.weatherType.orEmpty()),
+        weatherType = Weather.WeatherType.fromName(source.weatherType.orEmpty()),
         windSpeed = source.windSpeed.orDefault(),
     )
-
-internal fun mapWeatherType(weatherType: String) : Weather.WeatherType =
-    when(weatherType) {
-        "sunny" -> Weather.WeatherType.SUNNY
-        else -> Weather.WeatherType.SUNNY
-    }

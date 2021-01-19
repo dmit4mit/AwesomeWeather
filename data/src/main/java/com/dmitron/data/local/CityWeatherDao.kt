@@ -19,24 +19,17 @@ interface CityWeatherDao {
     fun getById(cityId: Long): Flow<DatabaseCityWeather>
 
     @Transaction
-    fun insertWeather(databaseWeather: DatabaseWeather, days: List<DatabaseDay>, hours: List<DatabaseHourlyWeather>) {
-//        cityWeather.
-    }
-
-    @Transaction
-    fun insertCityWeather(cityWeather: DatabaseWeather, days: List<DatabaseDay>, hours: List<DatabaseHourlyWeather>) {
-//        cityWeather.
-    }
-
     @Insert
     fun insertCity(item: DatabaseCity)
 
+    @Transaction
     @Insert
-    fun insertWeather(item: DatabaseWeather)
+    fun insertWeather(items: DatabaseWeather)
+
+    @Transaction
+    @Insert
+    fun insertDay(item: DatabaseDay): Long
 
     @Insert
-    fun insertDays(item: DatabaseDay)
-
-    @Insert
-    fun insertHours(item: DatabaseHourlyWeather)
+    fun insertHour(item: DatabaseHourlyWeather)
 }

@@ -5,6 +5,7 @@ data class City(
     val name: String,
     val countryCode: String,
     val imageURLs: ImageURLs,
+    val alternateNames: String,
     val latitude: Double,
     val longitude: Double,
     val timezone: String,

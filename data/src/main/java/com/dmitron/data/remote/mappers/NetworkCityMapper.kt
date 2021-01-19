@@ -14,6 +14,7 @@ internal fun mapNetworkCity(source: NetworkCity): City =
         name = source.name.orEmpty(),
         countryCode = source.countryCode.orEmpty(),
         imageURLs = mapNetworkImageUrls(source.imageURLs ?: NetworkCity.NetworkImageURLs()),
+        alternateNames = source.alternateNames.orEmpty(),
         latitude = source.latitude.orDefault(),
         longitude = source.longitude.orDefault(),
         timezone = source.timezone.orEmpty(),

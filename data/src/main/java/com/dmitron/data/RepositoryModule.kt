@@ -15,7 +15,7 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    single { CityWeatherRoomDataSource(get()) } bind CityWeatherLocalDataSource::class
+    single { CityWeatherRoomDataSource(get(), get()) } bind CityWeatherLocalDataSource::class
     single { CityWeatherApiDataSource(get(), get(), get()) } bind CityWeatherRemoteDataSource::class
     single { CityWeatherRepositoryImpl(get(), get(), get()) } bind CityWeatherRepository::class
     single { CitySharedPrefDataSource() }

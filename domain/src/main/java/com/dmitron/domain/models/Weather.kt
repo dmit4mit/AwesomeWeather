@@ -21,7 +21,16 @@ data class Weather(
         )
     }
 
-    enum class WeatherType {
-        SUNNY, CLOUDY, LIGHT_RAIN, PARTLY_CLOUDY, HEAVY_RAIN, SNOW_SLEET
+    enum class WeatherType(val title: String) {
+        SUNNY("sunny"),
+        CLOUDY("cloudy"),
+        LIGHT_RAIN("lightRain"),
+        PARTLY_CLOUDY("partlyCloudy"),
+        HEAVY_RAIN("heavyRain"),
+        SNOW_SLEET("snowSleet");
+
+        companion object {
+            fun fromName(name: String) = values().find { it.title == name } ?: SUNNY
+        }
     }
 }

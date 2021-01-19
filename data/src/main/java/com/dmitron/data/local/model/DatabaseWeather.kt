@@ -4,6 +4,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.Relation
+import java.util.*
 
 data class DatabaseWeatherWithDaysAndHours(
     @Embedded val weather: DatabaseWeather,
@@ -27,7 +28,7 @@ data class DatabaseDayWithHours(
 @Entity
 data class DatabaseWeather(
     @PrimaryKey val id: Int,
-    val associatedCityId: Int,
+    val associatedCityId: Long,
 )
 
 @Entity
