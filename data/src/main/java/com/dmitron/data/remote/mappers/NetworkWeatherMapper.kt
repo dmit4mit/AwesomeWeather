@@ -6,7 +6,6 @@ import com.dmitron.data.utils.mapNullInputList
 import com.dmitron.data.utils.orDefault
 import com.dmitron.domain.models.Weather
 import com.dmitron.domain.models.Weather.Day.HourlyWeather
-import com.dmitron.domain.models.Weather.WeatherType.Companion
 
 internal fun mapNetworkWeather(source: NetworkWeather): Weather =
     Weather(
