@@ -30,8 +30,9 @@ class CityWeatherRepositoryImpl(
 
     override suspend fun getCityWeatherById(cityId: Long): Flow<ResultWrapper<CityWeather>> = flow {
         emit(ResultWrapper.Loading)
-        val local = localSource.getCityWeather(cityId)
-        emit(local)
+        localSource.getCityWeather(cityId).ifSuccess {
+            if (it != null) emit(ResultWrapper.Success(it))
+        }
         emit(ResultWrapper.Loading)
         val result = remoteSource.getCityWeather(cityId)
         result.ifSuccess { localSource.addCityWeather(it) }

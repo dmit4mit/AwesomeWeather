@@ -23,7 +23,7 @@ internal fun mapHourToDatabase(
         humidity = source.humidity,
         rainChance = source.rainChance,
         temperature = source.temperature,
-        weatherType = source.weatherType.name,
+        weatherType = source.weatherType.title,
         windSpeed = source.windSpeed,
     )
 

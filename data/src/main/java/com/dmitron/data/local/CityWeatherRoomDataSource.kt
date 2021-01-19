@@ -1,6 +1,5 @@
 package com.dmitron.data.local
 
-import com.dmitron.common.ErrorType
 import com.dmitron.common.ResultWrapper
 import com.dmitron.data.local.mappers.facade.DatabaseCityWeatherMapperFacade
 import com.dmitron.domain.models.CityWeather
@@ -9,14 +8,9 @@ class CityWeatherRoomDataSource(
     private val mapper: DatabaseCityWeatherMapperFacade,
     private val dao: CityWeatherDao,
 ) : CityWeatherLocalDataSource {
-    override suspend fun getCityWeather(cityId: Long): ResultWrapper<CityWeather> {
-        val data = dao.getById(cityId)
-        return if (data == null) ResultWrapper.Failure(ErrorType.NO_DATA_FOUND)
-        else ResultWrapper.Success(mapper.mapDatabaseCityWeather(data))
-//        return dao.getById(cityId).mapNotNull {
-//            ResultWrapper.Success(mapper.mapDatabaseCityWeather(it))
-//            mapper.mapDatabaseCityWeather(it)
-//        }
+    override suspend fun getCityWeather(cityId: Long): ResultWrapper<CityWeather?> {
+        val data = dao.getById(cityId) ?: return ResultWrapper.Success(null)
+        return ResultWrapper.Success(mapper.mapDatabaseCityWeather(data))
     }
 
     override suspend fun addCityWeather(cityWeather: CityWeather) {
