@@ -34,7 +34,7 @@ class CityViewPagerFragment :
             when (event) {
                 is CityViewPagerScreenEvent.AddCitiesScreens -> {
                     addCitiesToViewPager(event.ids)
-                    binding.viewPager.scrollToTheLastItem()
+                    binding.viewPager.scrollToTheCityWithId(event.ids.last())
                 }
                 CityViewPagerScreenEvent.OpenSearchScreen -> openSearchFragment()
                 is CityViewPagerScreenEvent.RemoveCity -> adapter.removeByCityId(event.id)
@@ -46,8 +46,8 @@ class CityViewPagerFragment :
         CityViewPagerFragmentDirections.actionCityViewPagerFragmentDestinationToSearchFragment()
     )
 
-    private fun ViewPager2.scrollToTheLastItem() {
-        post { setCurrentItem(this@CityViewPagerFragment.adapter.itemCount - 1, true) }
+    private fun ViewPager2.scrollToTheCityWithId(id: Long) {
+        post { setCurrentItem(this@CityViewPagerFragment.adapter.getIndexOfCityById(id), true) }
     }
 
     private fun addCitiesToViewPager(ids: List<Long>) {

@@ -33,5 +33,10 @@ class CityViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) 
         }
     }
 
+    fun getIndexOfCityById(cityId: Long): Int {
+        val index = fragments.indexOfFirst { it.first == cityId }
+        return if (index == -1) fragments.lastIndex else index
+    }
+
     fun getCityIdByPosition(position: Int) = fragments[position].first
 }
