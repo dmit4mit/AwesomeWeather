@@ -1,6 +1,7 @@
 package com.dmitron.bottlerocketweather.search.adapter
 
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +11,7 @@ import com.dmitron.bottlerocketweather.utils.layoutInflater
 
 class SearchAdapter(
     private val itemClickListener: (SearchItem) -> Unit
-) : ListAdapter<SearchItem, SearchAdapter.SearchViewHolder>(DIFF_CALLBACK) {
+) : PagedListAdapter<SearchItem, SearchAdapter.SearchViewHolder>(DIFF_CALLBACK) {
     
     inner class SearchViewHolder(private val binding: ViewSearchItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -28,7 +29,7 @@ class SearchAdapter(
         )
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        getItem(position)?.let { holder.bind(it) }
     }
 
     companion object {
