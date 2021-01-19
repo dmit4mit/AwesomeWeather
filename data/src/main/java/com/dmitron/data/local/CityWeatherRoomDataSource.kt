@@ -15,9 +15,8 @@ class CityWeatherRoomDataSource(
 
     override suspend fun addCityWeather(cityWeather: CityWeather) {
         dao.insertCity(mapper.mapCityToDatabase(cityWeather.city))
-        dao.insertWeather(mapper.mapWeatherToDatabase(cityWeather.weather, cityWeather.city.id))
+        val weatherId = dao.insertWeather(mapper.mapWeatherToDatabase(cityWeather.weather, cityWeather.city.id))
         val cityId = cityWeather.city.id
-        val weatherId = cityWeather.weather.id
         cityWeather.weather.days.forEach { day ->
             val databaseDay = mapper.mapDayToDatabase(day, weatherId, cityId)
             val dayId = dao.insertDay(databaseDay)

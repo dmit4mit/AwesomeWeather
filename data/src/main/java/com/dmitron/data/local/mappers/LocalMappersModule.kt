@@ -35,10 +35,10 @@ val localMappersModule = module {
 fun makeHourToDatabaseMapper(): (
     Weather.Day.HourlyWeather, dayId: Long, cityId: Long,
     parentDayOfWeek: Int,
-    parentWeatherId: Int
+    parentWeatherId: Long
 ) -> DatabaseHourlyWeather = ::mapHourToDatabase
 
-fun makeDayToDatabaseMapper(): (Weather.Day, weatherId: Int, cityId: Long) -> DatabaseDay =
+fun makeDayToDatabaseMapper(): (Weather.Day, weatherId: Long, cityId: Long) -> DatabaseDay =
     ::mapDayToDatabase
 
 

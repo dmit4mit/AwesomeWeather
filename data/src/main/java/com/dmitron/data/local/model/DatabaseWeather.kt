@@ -23,18 +23,20 @@ data class DatabaseDayWithHours(
 
 @Entity(indices = [Index(value = ["associatedCityId"], unique = true)])
 data class DatabaseWeather(
-    @PrimaryKey val id: Int,
     val associatedCityId: Long,
-)
+) {
+    @PrimaryKey(autoGenerate = true)
+    var id: Long = 0
+}
 
 @Entity(indices = [Index(value = ["cityId", "dayOfTheWeek"], unique = true)])
 data class DatabaseDay(
-    val cityId: Long,
-    val parentWeatherId: Int,
-    val dayOfTheWeek: Int,
-    val low: Int,
-    val high: Int,
-    val weatherType: String,
+    val cityId: Long = 0,
+    val parentWeatherId: Long = 0,
+    val dayOfTheWeek: Int = 0,
+    val low: Int = 0,
+    val high: Int = 0,
+    val weatherType: String = "",
 ) {
     @PrimaryKey(autoGenerate = true)
     var dayId: Long = 0
@@ -44,16 +46,16 @@ data class DatabaseDay(
     indices = [Index(value = ["cityId", "parentDayOfWeek", "hour"], unique = true)]
 )
 data class DatabaseHourlyWeather(
-    val cityId: Long,
-    val parentDayOfWeek: Int,
-    val parentDayId: Long,
-    val parentWeatherId: Int,
-    val hour: Int,
-    val humidity: Double,
-    val rainChance: Double,
-    val temperature: Int,
-    val weatherType: String,
-    val windSpeed: Double,
+    val cityId: Long = 0,
+    val parentDayOfWeek: Int = 0,
+    val parentDayId: Long = 0,
+    val parentWeatherId: Long = 0,
+    val hour: Int = 0,
+    val humidity: Double = 0.0,
+    val rainChance: Double = 0.0,
+    val temperature: Int = 0,
+    val weatherType: String = "",
+    val windSpeed: Double = 0.0,
 ) {
     @PrimaryKey(autoGenerate = true)
     var hourId: Long = 0

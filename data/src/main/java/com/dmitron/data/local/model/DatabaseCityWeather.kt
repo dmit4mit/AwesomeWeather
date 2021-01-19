@@ -10,5 +10,5 @@ data class DatabaseCityWeather(
         parentColumn = "geoNameId",
         entityColumn = "associatedCityId"
     )
-    val weather: DatabaseWeatherWithDaysAndHours,
+    val weather: DatabaseWeatherWithDaysAndHours?,
 )

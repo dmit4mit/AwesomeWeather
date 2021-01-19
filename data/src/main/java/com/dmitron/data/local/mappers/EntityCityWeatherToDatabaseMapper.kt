@@ -12,7 +12,7 @@ internal fun mapHourToDatabase(
     dayId: Long,
     cityId: Long,
     parentDayOfWeek: Int,
-    parentWeatherId: Int
+    parentWeatherId: Long
 ): DatabaseHourlyWeather =
     DatabaseHourlyWeather(
         cityId = cityId,
@@ -27,7 +27,7 @@ internal fun mapHourToDatabase(
         windSpeed = source.windSpeed,
     )
 
-internal fun mapDayToDatabase(source: Weather.Day, weatherId: Int, cityId: Long): DatabaseDay =
+internal fun mapDayToDatabase(source: Weather.Day, weatherId: Long, cityId: Long): DatabaseDay =
     DatabaseDay(
         cityId = cityId,
         parentWeatherId = weatherId,
@@ -39,7 +39,6 @@ internal fun mapDayToDatabase(source: Weather.Day, weatherId: Int, cityId: Long)
 
 internal fun mapWeatherToDatabase(source: Weather, cityId: Long): DatabaseWeather =
     DatabaseWeather(
-        id = source.id,
         associatedCityId = cityId
     )
 

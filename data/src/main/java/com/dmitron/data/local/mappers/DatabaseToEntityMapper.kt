@@ -1,6 +1,9 @@
 package com.dmitron.data.local.mappers
 
-import com.dmitron.data.local.model.*
+import com.dmitron.data.local.model.DatabaseCity
+import com.dmitron.data.local.model.DatabaseCityWeather
+import com.dmitron.data.local.model.DatabaseDayWithHours
+import com.dmitron.data.local.model.DatabaseHourlyWeather
 import com.dmitron.domain.models.City
 import com.dmitron.domain.models.CityWeather
 import com.dmitron.domain.models.Weather
@@ -9,8 +12,8 @@ internal fun mapDatabaseCityWeather(source: DatabaseCityWeather): CityWeather =
     CityWeather(
         city = mapDatabaseCity(source.city),
         weather = Weather(
-            days = source.weather.days.map { mapDatabaseDay(it) },
-            id = source.weather.weather.id
+            days = source.weather?.days?.map { mapDatabaseDay(it) }.orEmpty(),
+            id = 0
         )
     )
 

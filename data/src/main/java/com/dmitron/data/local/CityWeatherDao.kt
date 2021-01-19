@@ -21,7 +21,7 @@ interface CityWeatherDao {
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertWeather(items: DatabaseWeather)
+    fun insertWeather(items: DatabaseWeather): Long
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
