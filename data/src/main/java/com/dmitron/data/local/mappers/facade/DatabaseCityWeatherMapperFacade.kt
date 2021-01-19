@@ -9,6 +9,10 @@ class DatabaseCityWeatherMapperFacade(
     val mapDatabaseCityWeather: (DatabaseCityWeather) -> CityWeather,
     val mapCityToDatabase: (City) -> DatabaseCity,
     val mapWeatherToDatabase: (Weather, cityId: Long) -> DatabaseWeather,
-    val mapDayToDatabase: (Weather.Day, weatherId: Int) -> DatabaseDay,
-    val mapHourToDatabase: (Weather.Day.HourlyWeather, dayId: Long) -> DatabaseHourlyWeather,
+    val mapDayToDatabase: (Weather.Day, weatherId: Int, cityId: Long) -> DatabaseDay,
+    val mapHourToDatabase: (
+        Weather.Day.HourlyWeather, dayId: Long, cityId: Long,
+        parentDayOfWeek: Int,
+        parentWeatherId: Int
+    ) -> DatabaseHourlyWeather,
 )

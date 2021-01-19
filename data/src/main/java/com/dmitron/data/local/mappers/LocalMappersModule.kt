@@ -2,8 +2,6 @@ package com.dmitron.data.local.mappers
 
 import com.dmitron.data.local.mappers.facade.DatabaseCityWeatherMapperFacade
 import com.dmitron.data.local.model.*
-import com.dmitron.data.remote.mappers.mapNetworkCityList
-import com.dmitron.data.remote.mappers.mapNetworkCityWeather
 import com.dmitron.domain.models.City
 import com.dmitron.domain.models.CityWeather
 import com.dmitron.domain.models.Weather
@@ -34,11 +32,14 @@ val localMappersModule = module {
     factory(named(HOUR_TO_DATABASE_MAPPER)) { makeHourToDatabaseMapper() }
 }
 
-fun makeHourToDatabaseMapper(): (Weather.Day.HourlyWeather, dayId: Long) -> DatabaseHourlyWeather {
-    return ::mapHourToDatabase
-}
+fun makeHourToDatabaseMapper(): (
+    Weather.Day.HourlyWeather, dayId: Long, cityId: Long,
+    parentDayOfWeek: Int,
+    parentWeatherId: Int
+) -> DatabaseHourlyWeather = ::mapHourToDatabase
 
-fun makeDayToDatabaseMapper(): (Weather.Day, weatherId: Int) -> DatabaseDay = ::mapDayToDatabase
+fun makeDayToDatabaseMapper(): (Weather.Day, weatherId: Int, cityId: Long) -> DatabaseDay =
+    ::mapDayToDatabase
 
 
 fun makeWeatherToDatabaseMapper(): (Weather, cityId: Long) -> DatabaseWeather {
@@ -48,7 +49,6 @@ fun makeWeatherToDatabaseMapper(): (Weather, cityId: Long) -> DatabaseWeather {
 fun makeCityToDatabaseMapper(): (City) -> DatabaseCity {
     return ::mapCityToDatabase
 }
-
 
 internal fun makeDatabaseCityWeatherMapper(): (DatabaseCityWeather) -> CityWeather = {
     mapDatabaseCityWeather(it)

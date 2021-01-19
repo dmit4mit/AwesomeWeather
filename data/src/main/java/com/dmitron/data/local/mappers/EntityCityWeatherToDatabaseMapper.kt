@@ -7,8 +7,17 @@ import com.dmitron.data.local.model.DatabaseWeather
 import com.dmitron.domain.models.City
 import com.dmitron.domain.models.Weather
 
-internal fun mapHourToDatabase(source: Weather.Day.HourlyWeather, dayId: Long): DatabaseHourlyWeather =
+internal fun mapHourToDatabase(
+    source: Weather.Day.HourlyWeather,
+    dayId: Long,
+    cityId: Long,
+    parentDayOfWeek: Int,
+    parentWeatherId: Int
+): DatabaseHourlyWeather =
     DatabaseHourlyWeather(
+        cityId = cityId,
+        parentDayOfWeek = parentDayOfWeek,
+        parentWeatherId = parentWeatherId,
         parentDayId = dayId,
         hour = source.hour,
         humidity = source.humidity,
@@ -18,8 +27,9 @@ internal fun mapHourToDatabase(source: Weather.Day.HourlyWeather, dayId: Long): 
         windSpeed = source.windSpeed,
     )
 
-internal fun mapDayToDatabase(source: Weather.Day, weatherId: Int): DatabaseDay =
+internal fun mapDayToDatabase(source: Weather.Day, weatherId: Int, cityId: Long): DatabaseDay =
     DatabaseDay(
+        cityId = cityId,
         parentWeatherId = weatherId,
         dayOfTheWeek = source.dayOfTheWeek,
         low = source.low,

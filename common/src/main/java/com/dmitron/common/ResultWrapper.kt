@@ -17,6 +17,10 @@ sealed class ResultWrapper<out R> {
             Loading -> Loading
         }
 
+    inline fun ifSuccess(fn: (R) -> Unit) {
+        if (this is Success) fn(data)
+    }
+
     inline fun <T> flatMap(fn: (R) -> ResultWrapper<T>): ResultWrapper<T> =
         when (this) {
             is Success -> fn(data)

@@ -12,11 +12,11 @@ import com.dmitron.domain.repository.CityWeatherRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 class CityWeatherRepositoryImpl(
-//    local cache doesn't fully implemented yet
     private val localSource: CityWeatherLocalDataSource,
     private val remoteSource: CityWeatherRemoteDataSource,
     private val cityIdsLocalSource: CitySharedPrefDataSource
@@ -30,7 +30,12 @@ class CityWeatherRepositoryImpl(
 
     override suspend fun getCityWeatherById(cityId: Long): Flow<ResultWrapper<CityWeather>> = flow {
         emit(ResultWrapper.Loading)
-        emit(remoteSource.getCityWeather(cityId))
+        val local = localSource.getCityWeather(cityId)
+        emit(local)
+        emit(ResultWrapper.Loading)
+        val result = remoteSource.getCityWeather(cityId)
+        result.ifSuccess { localSource.addCityWeather(it) }
+        emit(result)
     }.flowOn(dispatcher)
 
     override suspend fun searchCities(query: String): Flow<ResultWrapper<List<City>>> = flow {

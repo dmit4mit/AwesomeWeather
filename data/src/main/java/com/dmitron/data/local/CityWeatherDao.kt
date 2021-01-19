@@ -1,9 +1,6 @@
 package com.dmitron.data.local
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room.*
 import com.dmitron.data.local.model.*
 import kotlinx.coroutines.flow.Flow
 
@@ -16,20 +13,20 @@ interface CityWeatherDao {
 
     @Transaction
     @Query("SELECT * FROM DatabaseCity WHERE geoNameId = :cityId")
-    fun getById(cityId: Long): Flow<DatabaseCityWeather>
+    fun getById(cityId: Long): DatabaseCityWeather?
 
     @Transaction
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertCity(item: DatabaseCity)
 
     @Transaction
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertWeather(items: DatabaseWeather)
 
     @Transaction
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertDay(item: DatabaseDay): Long
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertHour(item: DatabaseHourlyWeather)
 }
