@@ -6,7 +6,7 @@
     <data>
         <variable
             name="clickHandler"
-            type="com.dmitron.bottlerocketweather.main.TopBarClickListener" />
+            type="com.dmitron.awesomeweather.main.TopBarClickListener" />
 
         <variable
             name="trashIconVisibility"

@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.dmitron.bottlerocketweather.main.MainViewModel" />
+            type="com.dmitron.awesomeweather.main.MainViewModel" />
 
     </data>
 

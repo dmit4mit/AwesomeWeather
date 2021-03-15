@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/cityFragment"
-        android:name="com.dmitron.bottlerocketweather.city.CityFragment"
+        android:name="com.dmitron.awesomeweather.city.CityFragment"
         android:label="CityFragment"
         tools:layout="@layout/fragment_city">
 
@@ -14,13 +14,13 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.dmitron.bottlerocketweather.search.SearchFragment"
+        android:name="com.dmitron.awesomeweather.search.SearchFragment"
         android:label="SearchFragment"
         tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/cityViewPagerFragmentDestination"
-        android:name="com.dmitron.bottlerocketweather.city.CityViewPagerFragment"
+        android:name="com.dmitron.awesomeweather.city.CityViewPagerFragment"
         tools:layout="@layout/fragment_city_view_pager"
         android:label="CityViewPagerFragment" >
 

@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.dmitron.bottlerocketweather.city.CityViewPagerViewModel" />
+            type="com.dmitron.awesomeweather.city.CityViewPagerViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

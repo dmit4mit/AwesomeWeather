@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.dmitron.bottlerocketweather.city.CityViewModel" />
+            type="com.dmitron.awesomeweather.city.CityViewModel" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

@@ -7,7 +7,7 @@
 
         <variable
             name="data"
-            type="com.dmitron.bottlerocketweather.city.hourlyadapter.HourlyWeatherViewData" />
+            type="com.dmitron.awesomeweather.city.hourlyadapter.HourlyWeatherViewData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

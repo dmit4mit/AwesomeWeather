@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.dmitron.bottlerocketweather.search.SearchViewModel" />
+            type="com.dmitron.awesomeweather.search.SearchViewModel" />
     </data>
 
 

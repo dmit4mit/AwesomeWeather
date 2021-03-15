@@ -12,7 +12,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.dmitron.bottlerocketweather"
+        applicationId "com.dmitron.awesomeweather"
         minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
