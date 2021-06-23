@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/margin_tiny"
+    android:paddingBottom="@dimen/margin_tiny">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <ImageView
+        android:id="@+id/ivWeather"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/clock"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/clock"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="?textAppearanceSubtitle2"
+        android:text="@string/title_time"
+        app:layout_constraintEnd_toStartOf="@+id/tvTemperature"
+        app:layout_constraintStart_toEndOf="@+id/ivWeather"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTemperature"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/title_temperature"
+        android:gravity="center"
+        android:textAppearance="?textAppearanceSubtitle2"
+        app:layout_constraintEnd_toStartOf="@+id/tvRainChance"
+        app:layout_constraintStart_toEndOf="@+id/clock"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvRainChance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/title_rain_chance"
+        android:gravity="center"
+        android:textAppearance="?textAppearanceSubtitle2"
+        app:layout_constraintEnd_toStartOf="@+id/tvWind"
+        app:layout_constraintStart_toEndOf="@+id/tvTemperature"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvWind"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/title_wind_speed"
+        android:gravity="center"
+        android:textAppearance="?textAppearanceSubtitle2"
+        app:layout_constraintEnd_toStartOf="@+id/tvHumidity"
+        app:layout_constraintStart_toEndOf="@+id/tvRainChance"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvHumidity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/title_humidity"
+        android:gravity="center"
+        android:textAppearance="?textAppearanceSubtitle2"
+        app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
+        app:layout_constraintStart_toEndOf="@+id/tvWind"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

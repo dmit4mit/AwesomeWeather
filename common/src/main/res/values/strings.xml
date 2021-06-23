@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_message_api">Something wrong with the server</string>
+    <string name="error_message_network">Something went wrong…\nCheck your internet connection and retry</string>
+    <string name="error_message_no_data">No data found</string>
+    <string name="error_message_unknown">Something went wrong</string>
+</resources>
